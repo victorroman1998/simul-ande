@@ -1,66 +1,38 @@
-# Entregar el 10 y presentar el 11 de noviembre de 2026
+# Entrega SIMUL-ANDE · versión visual 0.2
 
-Todos los horarios son **America/Lima, UTC−5**. Según la [consigna #204](https://github.com/d2cml-ai/Data-Science-Python/issues/204), el enlace se entrega el martes 10 antes de las **23:59**. Se permite seguir haciendo commits hasta presentar el miércoles 11. Conectarse a las **19:00** con la demo abierta. Victor Roman figura en turno 41, aproximadamente **21:25**, pero puede adelantarse. No hay diapositivas requeridas: el software debe correr.
+Estado de los recursos comprobados en GitHub el 11/11/2026. Tarea final: https://github.com/d2cml-ai/Data-Science-Python/issues/204. Presentación programada de 19:00 a 22:00 (Lima); turno original aproximado 21:25, sujeto a cambios.
 
-**Ya publicado:** [demo pública](https://simul-ande.streamlit.app/), [repo](https://github.com/victorroman1998/simul-ande), [video de 68 segundos](demo/simul-ande-demo.mp4). La publicación en Community Cloud se realizó con autorización del titular para iniciar sesión y aceptar términos; no hubo una nueva pantalla de ampliación de permisos. Caso y revisión médica siguen pendientes de validación clínica. El comentario en la issue **no fue enviado**.
+## Entrega principal
 
-## Publicar en Streamlit Community Cloud
+- **Demo visual React + Phaser:** https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/
+- **Rama entregable:** https://github.com/victorroman1998/simul-ande/tree/prototype/visual-phaser
+- **README nuevo:** https://github.com/victorroman1998/simul-ande/blob/prototype/visual-phaser/README.md
+- **Validación técnica y capturas:** [docs/visual/VALIDATION.md](visual/VALIDATION.md); [screenshots](visual/screenshots).
+- **Comentario publicado originalmente:** https://github.com/d2cml-ai/Data-Science-Python/issues/204#issuecomment-6785760104
+- **Demo anterior, histórica:** https://simul-ande.streamlit.app/ (no es el juego 2D).
+- **Video existente:** [demo de 68 s](demo/simul-ande-demo.mp4) del **MVP anterior en Streamlit**. No presentarlo como grabación del juego visual; grabar un video nuevo del juego antes de usarlo como respaldo del despliegue 2D.
 
-1. Publicar el código de esta carpeta como repositorio público, rama `main`. Destino propuesto: `victorroman1998/simul-ande`. No publicar `.venv`, `.env`, secretos o datos de pacientes.
-2. Entrar en [Streamlit Community Cloud](https://share.streamlit.io/), usar la cuenta propia de GitHub y crear una app desde ese repositorio.
-3. Seleccionar rama `main`, archivo `app.py`, Python **3.12**, nombre público disponible; desplegar. [Instrucciones oficiales](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app).
-4. Para la demo base no configurar secretos: dashboard y API bibliográfica funcionan sin claves. Gemini permanece deshabilitado. No habilitar IA de pago sin un control efectivo de gasto verificado.
-5. Abrir la URL desde una sesión distinta y completar I-2 desde inicio hasta exportación. Consultar PubMed y comprobar la respuesta. Repetir I-4, incluyendo la RX sintética y el laboratorio pendiente. Registrar URL y fecha real en README y VALIDATION.
+## Estado de publicación
 
-Un mensaje «deployed» no es una prueba del flujo. Si el servicio solicita nueva autorización OAuth o términos vinculantes, el titular debe revisar el alcance antes de aceptarlos. No se necesita contratar un plan para la ejecución local.
+El código visual se aloja en el subdirectorio `visual/` de la rama `prototype/visual-phaser`. El sitio `chatgpt.site` es un build estático independiente; los commits de GitHub no cambian el despliegue sin publicar otra versión. Consultar [DEPLOYMENT.md](visual/DEPLOYMENT.md) para su procedencia. La rama `main` conserva el código Python/Streamlit anterior.
 
-## Si el despliegue público aún no está listo
+El contenido clínico aún requiere VM-01–VM-05, validación educativa y entrevistas reales. Los datos son ficticios. El juego no tiene API bibliográfica propia: la sesión 03 del curso corresponde al MVP Streamlit heredado; el juego visual sí incluye la evaluación gráfica por dominios (sesión 05). No declarar integración de APIs o LLM dentro del juego hasta implementarlas y probarlas.
 
-La plantilla de la issue acepta **«corre en local»**. Entregar el repositorio con ese estado real antes de las 23:59 y seguir mejorando antes de presentar. La URL pública mejora la rúbrica, pero no debe inventarse ni sustituirse por una dirección local presentada como pública.
+## Actualización del comentario del diplomado
 
-Abrir una terminal en esta carpeta y ejecutar:
+El comentario original fue publicado, pero enlazaba al MVP anterior. **Editar manualmente el comentario existente** y colocar al inicio el nuevo enlace de demo visual y la rama `prototype/visual-phaser`. Incluir la distinción de herramientas anterior y rotular el video como histórico.
 
-```powershell
-.\.venv\Scripts\python.exe -m streamlit run app.py
-```
+GitHub rechazó el intento de editar el comentario desde la integración actual con un error 403 de permisos; también rechazó publicar uno nuevo. Estos fallos no implican que la cuenta del titular esté impedida de editarlo directamente desde GitHub. No afirmar que el comentario ya se actualizó.
 
-Mantener abierta esa terminal. Llevar cargada la app y el resultado de prueba. La API bibliográfica requiere internet; el caso y el dashboard no. El respaldo local del tutor se identifica explícitamente.
+## Guion de presentación, 3 minutos
 
-## Checklist de entrega humana pendiente
-
-- Documentar VM-01 a VM-05 con decisión, motivo, fecha y revisor antes de afirmar validación médica. Mientras tanto conservar el aviso pendiente.
-- Hacer y documentar tres conversaciones reales; no llenar las plantillas con entrevistas sintéticas.
-- Probar con dos personas y registrar obstáculos observados.
-- Descargar y reproducir [el video de respaldo ya creado](demo/simul-ande-demo.mp4), de 68 segundos sin audio. Está dentro del repositorio y de la carpeta local `docs/demo/`. Puede grabarse una versión narrada adicional si se desea.
-- Ensayar exactamente tres minutos. Abrir demo y video antes de las 19:00 del 11/11.
-- Revisar historial y archivos antes de publicar: `.env` y `secrets.toml` no deben estar rastreados. Buscar patrones de claves; las palabras «token» o «secret» en documentación no son por sí mismas secretos.
-- Publicar el comentario de entrega en la issue. El agente deja el texto preparado; no envía mensajes al docente sin una instrucción explícita.
-
-## Plantilla de comentario
-
-Texto listo para copiar en la issue antes de las 23:59. Las entrevistas y revisión médica faltantes se declaran expresamente; no se atribuye uso real de Gemini.
-
-```text
-Nombre: Victor Roman
-Startup y one-liner: SIMUL-ANDE. Simulación clínica para estudiantes e internos mediante casos ficticios y recursos explícitos del primer nivel peruano.
-Link del demo (URL pública, o "corre en local"): https://simul-ande.streamlit.app/
-Link del repo: https://github.com/victorroman1998/simul-ande
-Herramientas del curso que usa: APIs de datos públicos (03, PubMed) y dashboard evaluativo (05, Plotly). Tutor estructurado opcional (08; no acreditado como llamada real sin clave).
-Video de respaldo: https://github.com/victorroman1998/simul-ande/blob/main/docs/demo/simul-ande-demo.mp4
-Estado: caso sintético educativo con revisión médica pendiente. Tres conversaciones con usuarios aún pendientes; no se presentan entrevistas inventadas.
-```
-
-No se puede reconstruir honestamente un historial de commits de días anteriores. Se registran los hitos reales de hoy. No se promete una nota.
-
-## Guion de 3 minutos
-
-| Tiempo | Software / mensaje |
+| Tiempo | Acciones en la demo visual |
 |---|---|
-| 0:00–0:30 | «Queremos practicar decisiones con los recursos realmente disponibles. El problema y el precio siguen en validación; este paciente es ficticio y el contenido está en revisión.» Incorporar un hallazgo solo si existe entrevista real. |
-| 0:30–0:45 | I-2, inventario: no hay RX ni laboratorio; categoría y stock son cosas distintas. |
-| 0:45–1:50 | Confirmar recursos y resolver D1–D6. Mostrar qué prueba puede esperar y por qué se coordina referencia. |
-| 1:50–2:10 | Dashboard del intento y primera elección conservada. No es certificación. |
-| 2:10–2:30 | Pestaña Fuentes: consultar API pública. Si se usa reflexión local, nombrarla como tal. |
-| 2:30–3:00 | «Exploraremos un piloto docente de cuatro semanas para 30 participantes a S/300. El caso base no usa tokens de LLM. Lo siguiente es revisar clínicamente, entrevistar y observar aprendizaje.» |
+| 0:00–0:30 | Presentar la necesidad de decisiones en entornos con inventario explícito, señalando que demanda y eficacia educativa están por validarse. |
+| 0:30–0:45 | Abrir la sala I-2 y mostrar paciente y recursos: la categoría no implica stock garantizado. |
+| 0:45–1:40 | Interactuar con paciente, oxímetro, estetoscopio y oxígeno; mostrar que el estado y tiempo se registran en el mismo escenario. |
+| 1:40–2:10 | Contactar receptor, completar entrega y preparar traslado; enseñar las restricciones si se intenta una acción insegura. |
+| 2:10–2:30 | Mostrar el tablero de devolución, bitácora y comparación con I-4 si el tiempo lo permite. |
+| 2:30–3:00 | Explicar piloto comercial hipotético de S/300 por hasta 30 alumnos y pendientes: revisión médica, entrevistas y validación de aprendizaje. |
 
-Si falla internet: continuar el caso, mostrar tablero y exportación; la API informa indisponibilidad. Si falla el servidor: reproducir video real, y explicar que el código está en el repo. Nunca improvisar desenlaces clínicos.
+Si la demo visual falla, abrir las capturas y el código como evidencia y explicar el bloqueo técnico real. El video histórico de Streamlit no sustituye una grabación del nuevo juego. Un video nuevo debe mostrar el programa efectivamente ejecutándose.
