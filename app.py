@@ -29,6 +29,50 @@ except Exception:
     st.stop()
 
 
+def start_attempt(facility_id):
+    st.session_state.attempt = new_attempt(case, facility_id)
+    st.session_state.action_error = None
+
+
+def accept_inventory():
+    st.session_state.attempt = confirm_inventory(st.session_state.attempt)
+
+
+def submit_decision(decision_id, widget_key):
+    selected = st.session_state.get(widget_key)
+    st.session_state.action_error = None
+    if selected is None:
+        st.session_state.action_error = "Selecciona una alternativa antes de confirmar."
+        return
+    try:
+        st.session_state.attempt = confirm_decision(st.session_state.attempt, case, decision_id, selected)
+    except RuleViolation as error:
+        st.session_state.action_error = str(error)
+
+
+def correct_decision(decision_id):
+    st.session_state.action_error = None
+    try:
+        st.session_state.attempt = acknowledge_correction(st.session_state.attempt, case, decision_id)
+    except RuleViolation as error:
+        st.session_state.action_error = str(error)
+
+
+def reset_attempt():
+    st.session_state.pop("attempt", None)
+    st.session_state.pop("inventory_seen", None)
+    st.session_state.action_error = None
+
+
+def select_reflection():
+    config = dict(os.environ)
+    try:
+        config.update(dict(st.secrets))
+    except (FileNotFoundError, st.errors.StreamlitSecretNotFoundError):
+        pass
+    complete_tutor(st.session_state.attempt, case, Settings.from_mapping(config))
+
+
 def source_links(decision):
     evidence = {e["id"]: e for e in case["evidence"]}
     sources = {s["id"]: s for s in case["sources"]}
@@ -128,15 +172,8 @@ def show_result(state):
             source_links(decision)
     st.markdown("### Una pregunta para el siguiente intento")
     st.caption("La IA opcional elige IDs; el texto es local. El puntaje nunca depende del modelo.")
-    if state["tutor"] is None and st.button("Seleccionar reflexión", type="primary"):
-        config = dict(os.environ)
-        try:
-            config.update(dict(st.secrets))
-        except (FileNotFoundError, st.errors.StreamlitSecretNotFoundError):
-            pass
-        with st.spinner("Seleccionando reflexión…"):
-            complete_tutor(state, case, Settings.from_mapping(config))
-        st.rerun()
+    if state["tutor"] is None:
+        st.button("Seleccionar reflexión", type="primary", on_click=select_reflection, key="select_reflection")
     if state["tutor"]:
         result = state["tutor"]
         record = validate_selection(result["selection"], eligible_decisions(state, case), case)
@@ -153,9 +190,7 @@ def show_result(state):
                        json.dumps(export_attempt(state, case), ensure_ascii=False, indent=2),
                        file_name=f"simul-ande-{state['facility_id']}.json", mime="application/json")
     st.caption("Sin nombres, correos, justificaciones ni claves. El progreso vive en esta sesión; recargar puede perderlo.")
-    if st.button("Comenzar otro intento"):
-        st.session_state.pop("attempt", None)
-        st.rerun()
+    st.button("Comenzar otro intento", on_click=reset_attempt, key="reset_attempt")
 
 
 st.caption("SIMULACIÓN CLÍNICA CON CONTEXTO PERUANO")
@@ -166,6 +201,8 @@ st.warning("Práctica educativa con un caso ficticio. El contenido clínico est�
 simulator, references, about = st.tabs(["Practicar el caso", "Fuentes y herramientas", "El proyecto"])
 
 with simulator:
+    if st.session_state.get("action_error"):
+        st.error(st.session_state.action_error)
     if "attempt" not in st.session_state:
         st.markdown("## Un turno. Seis decisiones.")
         st.write("Acompaña la atención de un adulto con neumonía probable, desde la prioridad inicial hasta una transferencia preparada. "
@@ -176,9 +213,7 @@ with simulator:
         inventory(facility)
         st.caption("La categoría es una referencia; no acredita stock ni autorización de una IPRESS real. "
                    "Tiempo objetivo de práctica: 8–12 min. Sin datos de pacientes reales.")
-        if st.button("Iniciar práctica", type="primary"):
-            st.session_state.attempt = new_attempt(case, facility_id)
-            st.rerun()
+        st.button("Iniciar práctica", type="primary", on_click=start_attempt, args=(facility_id,), key="start_attempt")
     else:
         state = st.session_state.attempt
         st.caption(f"{state['facility']['label']} · {state['facility']['category_reference']} · caso {state['case_id']} v{state['case_version']}")
@@ -187,10 +222,9 @@ with simulator:
         if not state["inventory_confirmed"]:
             st.markdown("## Confirma el turno antes de decidir")
             inventory(state["facility"])
-            seen = st.checkbox("He revisado recursos, límites y logística del turno ficticio.")
-            if st.button("Confirmar recursos y atender", type="primary", disabled=not seen):
-                st.session_state.attempt = confirm_inventory(state)
-                st.rerun()
+            seen = st.checkbox("He revisado recursos, límites y logística del turno ficticio.", key="inventory_seen")
+            st.button("Confirmar recursos y atender", type="primary", disabled=not seen,
+                      on_click=accept_inventory, key="accept_inventory")
         elif state["completed_at"]:
             show_result(state)
         else:
@@ -209,12 +243,8 @@ with simulator:
                     st.write(next(f["text"] for f in case["feedback_catalog"] if f["decision_id"] == decision_id))
                     st.write("Plan seguro del guion: " + option_label(decision["options"][0], state["facility_id"]))
                     source_links(decision)
-                    if st.button("He revisado la corrección; continuar con el plan seguro", type="primary"):
-                        try:
-                            st.session_state.attempt = acknowledge_correction(state, case, decision_id)
-                            st.rerun()
-                        except RuleViolation as error:
-                            st.error(str(error))
+                    st.button("He revisado la corrección; continuar con el plan seguro", type="primary",
+                              on_click=correct_decision, args=(decision_id,), key=f"correct_{decision_id}")
                 else:
                     decision = case["decisions"][state["step"]]
                     st.markdown(f"## {decision['id']} · {decision['title']}")
@@ -224,18 +254,12 @@ with simulator:
                                 "+ azitromicina 500 mg VO. No es receta de un curso completo ni recomendación universal pretraslado.")
                         st.caption("Se verifican antecedentes, dos viales de 1 g, una tableta de 500 mg, autorización, personal e insumos.")
                     with st.form(f"decision_{state['attempt_id']}_{decision['id']}"):
+                        widget_key = f"choice_{state['attempt_id']}_{decision['id']}"
                         selected = st.radio("¿Qué harías en este turno?", [o["id"] for o in decision["options"]], index=None,
+                                            key=widget_key,
                                             format_func=lambda value: option_label(next(o for o in decision["options"] if o["id"] == value), state["facility_id"]))
-                        submitted = st.form_submit_button("Confirmar decisión", type="primary")
-                    if submitted:
-                        if selected is None:
-                            st.error("Selecciona una alternativa antes de confirmar.")
-                        else:
-                            try:
-                                st.session_state.attempt = confirm_decision(state, case, decision["id"], selected)
-                                st.rerun()
-                            except RuleViolation as error:
-                                st.error(str(error))
+                        st.form_submit_button("Confirmar decisión", type="primary", on_click=submit_decision,
+                                              args=(decision["id"], widget_key))
 
 with references:
     st.markdown("## Evidencia y procedencia")
