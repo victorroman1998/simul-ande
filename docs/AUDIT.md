@@ -49,6 +49,8 @@ No se hizo una revisión jurídica exhaustiva ni una nueva lectura integral de S
 
 ## Faltantes que requieren evidencia humana o acceso
 
-Revisión médica documentada VM-01 a VM-05; tres conversaciones reales consentidas; prueba de usabilidad con dos personas; validación del precio; ensayo de tres minutos; video del software; destino público y cuenta de despliegue. El historial se crea con fechas reales, sin fabricar trabajo de días anteriores. La nota final depende del docente.
+Revisión médica documentada VM-01 a VM-05; tres conversaciones reales consentidas; prueba de usabilidad con dos personas; validación del precio; ensayo de tres minutos. El historial se crea con fechas reales, sin fabricar trabajo de días anteriores. La nota final depende del docente.
+
+Resultado de implementación: repo público `victorroman1998/simul-ande` confirmado por el titular, demo en `https://simul-ande.streamlit.app/`, video real de 68 segundos y comprobaciones en `docs/VALIDATION.md`. El titular pidió mantener revisión médica pendiente y tutor local; no se habilitó Gemini ni facturación. La cuenta de Streamlit se usó con autorización para aceptar términos e iniciar sesión. No se publicaron comentarios en la issue ni se contactó a usuarios.
 
 El repositorio local se creó separado de `Python_2` porque allí había cambios previos en `tarea_3`. No se modificó esa tarea.

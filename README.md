@@ -28,7 +28,9 @@ Una interfaz web pequeña y contenido JSON permiten distribuir un caso sin insta
 
 ## 6. Demo
 
-**Ejecución local:** `http://localhost:8501`. El estado de publicación y las pruebas observadas se registran en [VALIDATION.md](docs/VALIDATION.md). [Despliegue y entrega](docs/DELIVERY.md), [auditoría del ZIP](docs/AUDIT.md).
+**[Abrir demo pública](https://simul-ande.streamlit.app/)** · [Repositorio público](https://github.com/victorroman1998/simul-ande) · [Video de respaldo, 68 s](docs/demo/simul-ande-demo.mp4).
+
+Ejecución local: `http://localhost:8501`. Demo verificada en una sesión nueva y por HTTP sin cookies; ambos escenarios completan el recorrido. **29 pruebas automatizadas aprobadas en Windows**; CI también comprueba la instalación limpia en Linux. [Evidencias](docs/VALIDATION.md), [despliegue y entrega](docs/DELIVERY.md), [auditoría del ZIP](docs/AUDIT.md).
 
 Python **3.12** recomendado. Desde esta carpeta:
 
@@ -42,6 +44,8 @@ py -3.12 -m venv .venv
 
 En macOS/Linux, sustituir el ejecutable por `.venv/bin/python`. En este equipo Windows también funciona el entorno ya instalado dentro de esta carpeta. No se necesita clave para completar el caso. No introducir datos personales.
 
+Si se usa `uv` dentro de OneDrive, instalar con `uv pip install --link-mode copy -r requirements.txt` para evitar vínculos incompatibles con archivos de nube. El desarrollo se verificó con Streamlit 1.51.0 y Python 3.12; Community Cloud quedó configurado con Python 3.12.
+
 Ruta de demostración: I-2 → iniciar → confirmar recursos → seis elecciones → tablero → reflexión → exportar JSON. Repetir con I-4 para observar RX disponible solo en D3-A y laboratorio pendiente. Todas las opciones se presentan sin selección inicial.
 
 Capturas del software ejecutándose:
@@ -49,6 +53,8 @@ Capturas del software ejecutándose:
 ![Inicio e inventario](docs/screenshots/01_inicio.jpg)
 ![Decisión en contexto](docs/screenshots/02_decision.jpg)
 ![Resultado del intento](docs/screenshots/03_resultado.jpg)
+
+El video muestra un recorrido real I-2, las seis decisiones, el tablero, el tutor local y una respuesta real de PubMed. Se capturó a 2 imágenes por segundo y se codificó como MP4 de 68 segundos, 1280×720, sin audio. No contiene maquetas ni pacientes reales; puede descargarse como respaldo sin internet.
 
 ```mermaid
 flowchart LR

@@ -33,3 +33,23 @@ def test_ui_complete_case_export_and_reset(facility):
     button(app, "Comenzar otro intento").click().run()
     assert "attempt" not in app.session_state
 
+
+def test_ui_requires_corrections_and_preserves_critical_warning():
+    app = AppTest.from_file(APP, default_timeout=20).run()
+    button(app, "Iniciar práctica").click().run()
+    app.checkbox[0].check().run()
+    button(app, "Confirmar recursos y atender").click().run()
+    for i, letter in enumerate("CBAAAA", 1):
+        app.radio[0].set_value(f"D{i}_{letter}").run()
+        button(app, "Confirmar decisión").click().run()
+        if letter != "A":
+            assert app.session_state["attempt"]["pending_correction"] == f"D{i}"
+            assert not app.radio
+            button(app, "He revisado la corrección; continuar con el plan seguro").click().run()
+        assert not app.exception
+    state = app.session_state["attempt"]
+    assert state["completed_at"] and state["critical_flags"] == ["support_delayed"]
+    assert state["history_revealed_by_correction"]
+    assert app.metric[0].value == "75 / 100"
+    assert any("crítica" in message.value for message in app.error)
+

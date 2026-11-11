@@ -1,0 +1,258 @@
+{
+  "attempt_id": "18fe0912-0690-4c87-b7e7-1714592c94f9",
+  "case_id": "P-NAC-01",
+  "case_version": "0.1.0",
+  "medical_review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "required_ids": [
+      "VM-01",
+      "VM-02",
+      "VM-03",
+      "VM-04",
+      "VM-05"
+    ],
+    "decisions": []
+  },
+  "facility_id": "F_I2",
+  "choices": [
+    {
+      "decision_id": "D1",
+      "option_id": "D1_A",
+      "score": {
+        "reasoning": 0,
+        "safety": 10,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "consequence": "Soporte y coordinación activados."
+    },
+    {
+      "decision_id": "D2",
+      "option_id": "D2_A",
+      "score": {
+        "reasoning": 10,
+        "safety": 5,
+        "resources": 0,
+        "referral": 0
+      },
+      "critical_flag": null,
+      "consequence": "Se revela toda la historia."
+    },
+    {
+      "decision_id": "D3",
+      "option_id": "D3_A",
+      "score": {
+        "reasoning": 0,
+        "safety": 0,
+        "resources": 15,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "consequence": "Plan compatible con el turno."
+    },
+    {
+      "decision_id": "D4",
+      "option_id": "D4_A",
+      "score": {
+        "reasoning": 15,
+        "safety": 0,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "consequence": "Destino hospitalario mantenido."
+    },
+    {
+      "decision_id": "D5",
+      "option_id": "D5_A",
+      "score": {
+        "reasoning": 0,
+        "safety": 15,
+        "resources": 5,
+        "referral": 0
+      },
+      "critical_flag": null,
+      "consequence": "Primera administración simulada registrada."
+    },
+    {
+      "decision_id": "D6",
+      "option_id": "D6_A",
+      "score": {
+        "reasoning": 0,
+        "safety": 5,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "consequence": "Transferencia preparada; comunicar pendientes."
+    }
+  ],
+  "scores": {
+    "reasoning": 25,
+    "safety": 35,
+    "resources": 20,
+    "referral": 20
+  },
+  "critical_flags": [],
+  "avoidable_delay_min": 0,
+  "events": [
+    {
+      "sequence": 1,
+      "decision_id": "D1",
+      "option_id": "D1_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 0,
+        "safety": 10,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 2,
+      "decision_id": "D2",
+      "option_id": "D2_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 10,
+        "safety": 5,
+        "resources": 0,
+        "referral": 0
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 3,
+      "decision_id": "D3",
+      "option_id": "D3_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 0,
+        "safety": 0,
+        "resources": 15,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 4,
+      "decision_id": "D4",
+      "option_id": "D4_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 15,
+        "safety": 0,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 5,
+      "decision_id": "D5",
+      "option_id": "D5_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 0,
+        "safety": 15,
+        "resources": 5,
+        "referral": 0
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 6,
+      "decision_id": "D6",
+      "option_id": "D6_A",
+      "event_type": "decision_confirmed",
+      "score_delta": {
+        "reasoning": 0,
+        "safety": 5,
+        "resources": 0,
+        "referral": 5
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    },
+    {
+      "sequence": 7,
+      "decision_id": "D1",
+      "option_id": null,
+      "event_type": "tutor_fallback",
+      "score_delta": {
+        "reasoning": 0,
+        "safety": 0,
+        "resources": 0,
+        "referral": 0
+      },
+      "critical_flag": null,
+      "avoidable_delay_min": 0
+    }
+  ],
+  "tests": {},
+  "treatments_administered": [
+    "TX01"
+  ],
+  "transfer_prepared": true,
+  "transfer_initially_incomplete": false,
+  "started_at": "2026-11-11T02:01:27.650857+00:00",
+  "completed_at": "2026-11-11T02:03:17.586904+00:00",
+  "tutor": {
+    "mode": "local_fallback",
+    "selection": {
+      "focus_decision_id": "D1",
+      "feedback_id": "F01",
+      "question_id": "Q01"
+    },
+    "reason": "disabled_or_unconfigured",
+    "model": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "estimated_cost_usd": null
+  },
+  "fictional": true,
+  "risk_reference": {
+    "crb65_components": {
+      "confusion": 0,
+      "respiratory_rate": 1,
+      "blood_pressure": 0,
+      "age": 1
+    },
+    "crb65_total": 2,
+    "curb65_total": null,
+    "severe_cap_classification": "incomplete",
+    "unknowns": [
+      "urea",
+      "bun",
+      "pao2_fio2",
+      "white_blood_cells",
+      "platelets"
+    ],
+    "evidence_ids": [
+      "E01",
+      "E02",
+      "E06"
+    ]
+  },
+  "stock_remaining": {
+    "basic_assessment": 1,
+    "oxygen": 1,
+    "iv_administration": 1,
+    "ceftriaxone_1g": 2,
+    "azithromycin_500mg": 3,
+    "amoxicillin_500mg": 20,
+    "chest_xray": 0,
+    "cbc_urea": 0
+  },
+  "outcome": "Transferencia preparada; comunicar información disponible y pendiente al receptor ficticio.",
+  "usage_seconds": 109.9
+}

@@ -8,5 +8,6 @@ __pycache__/
 artifacts/
 *.log
 *.mp4
+!docs/demo/*.mp4
 *.webm
 

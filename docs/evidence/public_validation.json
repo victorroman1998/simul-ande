@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-11-11T02:14:36.417Z",
+  "url": "https://simul-ande.streamlit.app/",
+  "new_browser_session": true,
+  "facility": "F_I4",
+  "decisions_completed": 6,
+  "score": 100,
+  "chest_xray": "available_synthetic",
+  "laboratory": "pending",
+  "tutor": "local_fallback",
+  "pubmed_api": "verified_online",
+  "mobile_viewport_tested": {
+    "width": 390,
+    "height": 844
+  }
+}
