@@ -1,3 +1,10 @@
+> **ACTUALIZACIÓN · 11/11/2026 — SIMUL-ANDE ahora tiene simulador visual 2D.**
+>
+> **[Abrir demo visual React + Phaser](https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/)** · **[Ver código y README de la rama visual](https://github.com/victorroman1998/simul-ande/tree/prototype/visual-phaser)** · [Ver validación y capturas](https://github.com/victorroman1998/simul-ande/blob/prototype/visual-phaser/docs/visual/VALIDATION.md).
+>
+> **Esta rama `main` conserva el MVP anterior de Streamlit.** La URL `simul-ande.streamlit.app` y el video de 68 segundos documentados debajo corresponden a esa versión histórica, **no** al nuevo simulador 2D. El caso visual aún requiere revisión médica.
+
+---
 # SIMUL-ANDE
 
 Prototipo educativo para el proyecto final [#204 · Q-Lab PUCP](https://github.com/d2cml-ai/Data-Science-Python/issues/204). Un caso sintético, dos establecimientos ficticios y seis decisiones. **Contenido clínico en revisión médica; no usar para atender pacientes reales.**
