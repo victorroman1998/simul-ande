@@ -30,7 +30,7 @@ Una interfaz web pequeña y contenido JSON permiten distribuir un caso sin insta
 
 **[Abrir demo pública](https://simul-ande.streamlit.app/)** · [Repositorio público](https://github.com/victorroman1998/simul-ande) · [Video de respaldo, 68 s](docs/demo/simul-ande-demo.mp4).
 
-Ejecución local: `http://localhost:8501`. Demo verificada en una sesión nueva y por HTTP sin cookies; ambos escenarios completan el recorrido. **29 pruebas automatizadas aprobadas en Windows**; CI también comprueba la instalación limpia en Linux. [Evidencias](docs/VALIDATION.md), [despliegue y entrega](docs/DELIVERY.md), [auditoría del ZIP](docs/AUDIT.md).
+Ejecución local: `http://localhost:8501`. Demo verificada en una sesión nueva y por HTTP sin cookies; ambos escenarios completan el recorrido. **29 pruebas aprobadas en Windows y [Linux CI](https://github.com/victorroman1998/simul-ande/actions/runs/42945324546)**. [Evidencias](docs/VALIDATION.md), [despliegue y entrega](docs/DELIVERY.md), [auditoría del ZIP](docs/AUDIT.md).
 
 Python **3.12** recomendado. Desde esta carpeta:
 

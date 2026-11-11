@@ -1,0 +1,14 @@
+{
+  "repository": "victorroman1998/simul-ande",
+  "tested_commit": "bda8009b87c24702315a81a7e7962bec70d7fe98",
+  "run_id": 42945324546,
+  "job_id": 130276609694,
+  "url": "https://github.com/victorroman1998/simul-ande/actions/runs/42945324546",
+  "conclusion": "success",
+  "tests_passed": 29,
+  "pytest_seconds": 9.64,
+  "schema": "Draft 2020-12 passed",
+  "package_hashes_passed": 11,
+  "clinical_review": "pending",
+  "observed_log_utc": "2026-11-11T02:20:48.3401242Z"
+}
