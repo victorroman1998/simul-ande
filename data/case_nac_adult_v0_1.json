@@ -1,0 +1,1113 @@
+{
+  "schema_version": "1.0",
+  "case_id": "P-NAC-01",
+  "case_version": "0.1.0",
+  "product": "SIMUL-ANDE",
+  "locale": "es-PE",
+  "prepared_local_date": "2026-11-10",
+  "timezone": "America/Lima",
+  "fictional": true,
+  "objective": "Practicar razonamiento clínico, uso de recursos y referencia en un adulto con NAC probable.",
+  "medical_review": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewed_at": null,
+    "required_ids": [
+      "VM-01",
+      "VM-02",
+      "VM-03",
+      "VM-04",
+      "VM-05"
+    ],
+    "decisions": []
+  },
+  "patient": {
+    "id": "P-NAC-01",
+    "sex": "male",
+    "age_years": 68,
+    "weight_kg": 70,
+    "altitude_m_asl": 100,
+    "baseline_spo2_percent": null,
+    "chief_complaint": "Tres días de fiebre y tos, disnea creciente y dolor pleurítico derecho.",
+    "initial_vitals": {
+      "temperature_c": 38.5,
+      "heart_rate_per_min": 112,
+      "respiratory_rate_per_min": 32,
+      "systolic_bp_mmhg": 112,
+      "diastolic_bp_mmhg": 68,
+      "spo2_percent": 88,
+      "oxygen_condition": "room_air",
+      "signal_quality_confirmed": true,
+      "acute_confusion": false
+    },
+    "exam": "Orientado, acompañado, crepitantes focales basales derechos.",
+    "history": [
+      {
+        "id": "H01",
+        "topic": "Evolución",
+        "answer": "Tres días; la disnea ha aumentado."
+      },
+      {
+        "id": "H02",
+        "topic": "Alergias y reacción",
+        "answer": "Niega alergias conocidas; confirmar antes de administrar."
+      },
+      {
+        "id": "H03",
+        "topic": "Tratamientos y hospitalización",
+        "answer": "Sin medicación habitual, antibióticos ni hospitalización en los últimos 90 días."
+      },
+      {
+        "id": "H04",
+        "topic": "Enfermedades e inmunosupresión",
+        "answer": "No refiere antecedentes conocidos."
+      },
+      {
+        "id": "H05",
+        "topic": "Tolerancia oral",
+        "answer": "Puede ingerir líquidos y tabletas; sin vómitos."
+      },
+      {
+        "id": "H06",
+        "topic": "TB, aspiración y síntomas prolongados",
+        "answer": "Sin contacto conocido, aspiración, pérdida de peso o tos prolongada previa referidos; no son exclusiones definitivas."
+      },
+      {
+        "id": "H07",
+        "topic": "Apoyo",
+        "answer": "Familiar acompaña; requiere traslado asistido en el guion."
+      }
+    ],
+    "working_diagnosis": "NAC probable con hipoxemia y necesidad de atención hospitalaria.",
+    "confirmed_pathogen": null,
+    "risk_reference": {
+      "crb65_components": {
+        "confusion": 0,
+        "respiratory_rate": 1,
+        "blood_pressure": 0,
+        "age": 1
+      },
+      "crb65_total": 2,
+      "curb65_total": null,
+      "severe_cap_classification": "incomplete",
+      "unknowns": [
+        "urea",
+        "bun",
+        "pao2_fio2",
+        "white_blood_cells",
+        "platelets"
+      ],
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E06"
+      ]
+    }
+  },
+  "facilities": [
+    {
+      "id": "F_I2",
+      "category_reference": "I-2",
+      "label": "Puesto ficticio A",
+      "fictional": true,
+      "category_is_not_inventory": true,
+      "altitude_m_asl": 100,
+      "case_local_time": "10:00",
+      "opening_hours": "08:00–14:00",
+      "staff_on_duty": {
+        "physician": 1,
+        "nurse": 1,
+        "nursing_technician": 1
+      },
+      "resources": [
+        {
+          "id": "basic_assessment",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "set",
+          "notes": "Tensiómetro, termómetro, reloj, estetoscopio y pulsioxímetro operativos."
+        },
+        {
+          "id": "oxygen",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "source",
+          "notes": "Autonomía docente ficticia para soporte configurado; sin cálculo de flujo.",
+          "autonomy_min": 180
+        },
+        {
+          "id": "iv_administration",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "set",
+          "notes": "Capacidad inicial ficticia habilitada; revisar VM-03."
+        },
+        {
+          "id": "ceftriaxone_1g",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 4,
+          "unit": "vial_1g",
+          "notes": "Autorización institucional ficticia declarada para TX01; S07 consideración 1."
+        },
+        {
+          "id": "azithromycin_500mg",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 4,
+          "unit": "tablet_500mg",
+          "notes": "Stock del guion."
+        },
+        {
+          "id": "amoxicillin_500mg",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 20,
+          "unit": "tablet_500mg",
+          "notes": "Distractor; no corresponde al plan esperado de alta."
+        },
+        {
+          "id": "chest_xray",
+          "authorized_in_scenario": false,
+          "available": false,
+          "staff_present": false,
+          "supplies_present": false,
+          "quantity": 0,
+          "unit": "service",
+          "notes": "No incorporado al inventario local."
+        },
+        {
+          "id": "cbc_urea",
+          "authorized_in_scenario": false,
+          "available": false,
+          "staff_present": false,
+          "supplies_present": false,
+          "quantity": 0,
+          "unit": "service",
+          "notes": "Sin resultados durante esta atención."
+        }
+      ],
+      "monitoring": "Oximetría intermitente y observación presencial.",
+      "beds": {
+        "total": 0,
+        "free": 0,
+        "adequate_for_this_patient": false
+      },
+      "advanced_support_available": false,
+      "reference_phone_available": true,
+      "transport": {
+        "dispatch_min": 30,
+        "travel_min": 90,
+        "assisted": true,
+        "trained_team": true,
+        "oximetry": true,
+        "oxygen_autonomy_min": 180
+      }
+    },
+    {
+      "id": "F_I4",
+      "category_reference": "I-4",
+      "label": "Centro ficticio B",
+      "fictional": true,
+      "category_is_not_inventory": true,
+      "altitude_m_asl": 100,
+      "case_local_time": "10:00",
+      "opening_hours": "24 h",
+      "staff_on_duty": {
+        "physician": 2,
+        "nurse": 2,
+        "nursing_technician": 1,
+        "laboratory_staff": 1,
+        "radiology_technologist": 1
+      },
+      "resources": [
+        {
+          "id": "basic_assessment",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "set",
+          "notes": "Tensiómetro, termómetro, reloj, estetoscopio y pulsioxímetro operativos."
+        },
+        {
+          "id": "oxygen",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "source",
+          "notes": "Autonomía docente ficticia para soporte configurado; sin cálculo de flujo.",
+          "autonomy_min": 360
+        },
+        {
+          "id": "iv_administration",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "set",
+          "notes": "Capacidad inicial ficticia habilitada; revisar VM-03."
+        },
+        {
+          "id": "ceftriaxone_1g",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 20,
+          "unit": "vial_1g",
+          "notes": "Autorización institucional ficticia declarada para TX01; S07 consideración 1."
+        },
+        {
+          "id": "azithromycin_500mg",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 10,
+          "unit": "tablet_500mg",
+          "notes": "Stock del guion."
+        },
+        {
+          "id": "amoxicillin_500mg",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 40,
+          "unit": "tablet_500mg",
+          "notes": "Distractor; no corresponde al plan esperado de alta."
+        },
+        {
+          "id": "chest_xray",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "service",
+          "notes": "Servicio ficticio autorizado, equipo y operador presentes.",
+          "turnaround_min": 20
+        },
+        {
+          "id": "cbc_urea",
+          "authorized_in_scenario": true,
+          "available": true,
+          "staff_present": true,
+          "supplies_present": true,
+          "quantity": 1,
+          "unit": "service",
+          "notes": "No es medición inmediata de urea.",
+          "turnaround_min": 45
+        }
+      ],
+      "monitoring": "Oximetría y observación presencial; sin monitor multiparámetro continuo.",
+      "beds": {
+        "total": 4,
+        "free": 1,
+        "adequate_for_this_patient": false
+      },
+      "advanced_support_available": false,
+      "reference_phone_available": true,
+      "transport": {
+        "dispatch_min": 20,
+        "travel_min": 60,
+        "assisted": true,
+        "trained_team": true,
+        "oximetry": true,
+        "oxygen_autonomy_min": 180
+      }
+    }
+  ],
+  "unavailable_in_both": [
+    "ct",
+    "blood_gas",
+    "immediate_cultures",
+    "icu",
+    "mechanical_ventilation",
+    "vasopressors"
+  ],
+  "receiving_hospital": {
+    "id": "H_01",
+    "fictional": true,
+    "playable": false,
+    "acceptance_available_in_script": true,
+    "capabilities_declared": [
+      "hospital_assessment",
+      "sustained_oxygen",
+      "laboratory",
+      "radiology",
+      "escalation_assessment"
+    ]
+  },
+  "treatments": [
+    {
+      "id": "TX01",
+      "status": "proposed_pending_VM03",
+      "required_resource_ids": [
+        "oxygen",
+        "iv_administration",
+        "ceftriaxone_1g",
+        "azithromycin_500mg"
+      ],
+      "dose_plan": [
+        {
+          "resource_id": "ceftriaxone_1g",
+          "dose": 2,
+          "unit": "g",
+          "route": "EV",
+          "reference_interval_hours": 24,
+          "quantity_consumed": 2
+        },
+        {
+          "resource_id": "azithromycin_500mg",
+          "dose": 500,
+          "unit": "mg",
+          "route": "VO",
+          "reference_interval_hours": 24,
+          "quantity_consumed": 1
+        }
+      ],
+      "simulation_scope": "first_dose_before_transfer_only",
+      "full_course_duration_days": null,
+      "evidence_ids": [
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "source_ids": [
+        "S07",
+        "S09"
+      ],
+      "medical_validation_ids": [
+        "VM-03"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "chest_xray",
+      "result_fictional": true,
+      "result": "Opacidad alveolar basal derecha, sin compromiso multilobar ni derrame descrito.",
+      "visible_only_for": {
+        "facility_id": "F_I4",
+        "option_id": "D3_A"
+      },
+      "teaching_time_jump_min": 20,
+      "adds_avoidable_delay": false
+    },
+    {
+      "id": "cbc_urea",
+      "result": null,
+      "status": "pending_at_transfer_if_requested",
+      "visible_only_for": {
+        "facility_id": "F_I4",
+        "option_id": "D3_A"
+      },
+      "turnaround_min": 45
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "title": "Prioridad inicial",
+      "feedback_id": "F01",
+      "evidence_ids": [
+        "E01",
+        "E02"
+      ],
+      "source_ids": [
+        "S04"
+      ],
+      "medical_validation_ids": [
+        "VM-02"
+      ],
+      "max_score": {
+        "reasoning": 0,
+        "safety": 10,
+        "resources": 0,
+        "referral": 5
+      },
+      "options": [
+        {
+          "id": "D1_A",
+          "label": "Evaluar respiración, iniciar soporte y monitorización; activar referencia en paralelo.",
+          "score": {
+            "reasoning": 0,
+            "safety": 10,
+            "resources": 0,
+            "referral": 5
+          },
+          "consequence": "Soporte y coordinación activados.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0
+        },
+        {
+          "id": "D1_B",
+          "label": "Iniciar soporte y coordinar después de completar el estudio.",
+          "score": {
+            "reasoning": 0,
+            "safety": 5,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Referencia inicialmente pospuesta.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0
+        },
+        {
+          "id": "D1_C",
+          "label": "Mantener en cola hasta terminar los exámenes.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Se requiere corrección inmediata.",
+          "critical_flag": "support_delayed",
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "title": "Anamnesis dirigida",
+      "feedback_id": "F02",
+      "evidence_ids": [
+        "E02"
+      ],
+      "source_ids": [
+        "S09"
+      ],
+      "medical_validation_ids": [
+        "VM-01"
+      ],
+      "max_score": {
+        "reasoning": 10,
+        "safety": 5,
+        "resources": 0,
+        "referral": 0
+      },
+      "options": [
+        {
+          "id": "D2_A",
+          "label": "Revisar evolución, alergias, tratamientos, enfermedades, tolerancia oral, TB/aspiración y apoyo.",
+          "score": {
+            "reasoning": 10,
+            "safety": 5,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Se revela toda la historia.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0,
+          "reveal_history_ids": [
+            "H01",
+            "H02",
+            "H03",
+            "H04",
+            "H05",
+            "H06",
+            "H07"
+          ]
+        },
+        {
+          "id": "D2_B",
+          "label": "Preguntar solo síntomas actuales.",
+          "score": {
+            "reasoning": 5,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Historia inicial incompleta; completar mediante corrección.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0,
+          "reveal_history_ids": [
+            "H01"
+          ]
+        },
+        {
+          "id": "D2_C",
+          "label": "Historia extensa sin revisar alergias ni tratamientos.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Corregir antecedentes antes de prescribir.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0,
+          "reveal_history_ids": [
+            "H01",
+            "H07"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "title": "Exámenes y recursos",
+      "feedback_id": "F03",
+      "evidence_ids": [],
+      "source_ids": [
+        "S04"
+      ],
+      "medical_validation_ids": [
+        "VM-04"
+      ],
+      "max_score": {
+        "reasoning": 0,
+        "safety": 0,
+        "resources": 15,
+        "referral": 5
+      },
+      "options": [
+        {
+          "id": "D3_A",
+          "label": "Usar apoyo diagnóstico según inventario sin condicionar traslado.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 15,
+            "referral": 5
+          },
+          "consequence": "Plan compatible con el turno.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0,
+          "label_by_facility": {
+            "F_I2": "Reconocer ausencia de RX/laboratorio y continuar evaluación clínica y referencia.",
+            "F_I4": "Solicitar RX y hemograma/urea en paralelo; trasladar sin esperar pendientes."
+          },
+          "requested_tests_by_facility": {
+            "F_I2": [],
+            "F_I4": [
+              "chest_xray",
+              "cbc_urea"
+            ]
+          }
+        },
+        {
+          "id": "D3_B",
+          "label": "Diferir apoyo diagnóstico manteniendo destino asistencial.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 15,
+            "referral": 5
+          },
+          "consequence": "Alternativa segura aceptada en el guion.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0,
+          "label_by_facility": {
+            "F_I2": "Gestionar RX externo sin detener la referencia ni trasladar por medios propios.",
+            "F_I4": "Diferir imágenes y laboratorio al receptor mientras se refiere."
+          },
+          "requested_tests_by_facility": {
+            "F_I2": [],
+            "F_I4": []
+          }
+        },
+        {
+          "id": "D3_C",
+          "label": "Completar RX, laboratorio, tomografía y cultivos antes de referir.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Espera interceptada; no aparecen resultados inexistentes.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 60
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "title": "Riesgo y destino",
+      "feedback_id": "F04",
+      "evidence_ids": [
+        "E01",
+        "E06"
+      ],
+      "source_ids": [],
+      "medical_validation_ids": [
+        "VM-01"
+      ],
+      "max_score": {
+        "reasoning": 15,
+        "safety": 0,
+        "resources": 0,
+        "referral": 5
+      },
+      "options": [
+        {
+          "id": "D4_A",
+          "label": "CRB-65=2: atención hospitalaria; completar valoración de severidad donde falten datos.",
+          "score": {
+            "reasoning": 15,
+            "safety": 0,
+            "resources": 0,
+            "referral": 5
+          },
+          "consequence": "Destino hospitalario mantenido.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0
+        },
+        {
+          "id": "D4_B",
+          "label": "CRB-65=1, pero referir al hospital por juicio clínico.",
+          "score": {
+            "reasoning": 5,
+            "safety": 0,
+            "resources": 0,
+            "referral": 5
+          },
+          "consequence": "Destino adecuado con error de cálculo.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0
+        },
+        {
+          "id": "D4_C",
+          "label": "Alta porque conserva presión y orientación.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Alta interceptada por seguridad.",
+          "critical_flag": "unsafe_home_plan",
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0
+        }
+      ]
+    },
+    {
+      "id": "D5",
+      "title": "Tratamiento inicial",
+      "feedback_id": "F05",
+      "evidence_ids": [
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "source_ids": [
+        "S07",
+        "S09"
+      ],
+      "medical_validation_ids": [
+        "VM-03"
+      ],
+      "max_score": {
+        "reasoning": 0,
+        "safety": 15,
+        "resources": 5,
+        "referral": 0
+      },
+      "options": [
+        {
+          "id": "D5_A",
+          "label": "Elegir TX01 tras revisar seguridad, stock y autorización; continuar coordinación.",
+          "score": {
+            "reasoning": 0,
+            "safety": 15,
+            "resources": 5,
+            "referral": 0
+          },
+          "consequence": "Primera administración simulada registrada.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0,
+          "treatment_id": "TX01"
+        },
+        {
+          "id": "D5_B",
+          "label": "Elegir solo ceftriaxona.",
+          "score": {
+            "reasoning": 0,
+            "safety": 7,
+            "resources": 5,
+            "referral": 0
+          },
+          "consequence": "Selección incompleta; corregir esquema.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0,
+          "treatment_after_correction_id": "TX01"
+        },
+        {
+          "id": "D5_C",
+          "label": "Elegir solo amoxicilina oral y plan de alta.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Plan de alta interceptado.",
+          "critical_flag": "unsafe_treatment_disposition",
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0,
+          "treatment_after_correction_id": "TX01"
+        }
+      ]
+    },
+    {
+      "id": "D6",
+      "title": "Transferencia segura",
+      "feedback_id": "F06",
+      "evidence_ids": [],
+      "source_ids": [
+        "S04",
+        "S10"
+      ],
+      "medical_validation_ids": [
+        "VM-04"
+      ],
+      "max_score": {
+        "reasoning": 0,
+        "safety": 5,
+        "resources": 0,
+        "referral": 5
+      },
+      "options": [
+        {
+          "id": "D6_A",
+          "label": "Confirmar receptor, traslado asistido, oxígeno, reevaluación y entrega clínica.",
+          "score": {
+            "reasoning": 0,
+            "safety": 5,
+            "resources": 0,
+            "referral": 5
+          },
+          "consequence": "Transferencia preparada; comunicar pendientes.",
+          "critical_flag": null,
+          "requires_teaching_correction": false,
+          "avoidable_delay_min": 0
+        },
+        {
+          "id": "D6_B",
+          "label": "Solicitar ambulancia sin completar receptor ni entrega clínica.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 2
+          },
+          "consequence": "Transferencia inicialmente incompleta.",
+          "critical_flag": null,
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0,
+          "transfer_incomplete": true
+        },
+        {
+          "id": "D6_C",
+          "label": "Enviar por medios propios.",
+          "score": {
+            "reasoning": 0,
+            "safety": 0,
+            "resources": 0,
+            "referral": 0
+          },
+          "consequence": "Salida interceptada por seguridad.",
+          "critical_flag": "unassisted_transfer",
+          "requires_teaching_correction": true,
+          "avoidable_delay_min": 0
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "domain_order": [
+      "reasoning",
+      "safety",
+      "resources",
+      "referral"
+    ],
+    "max_by_domain": {
+      "reasoning": 25,
+      "safety": 35,
+      "resources": 20,
+      "referral": 20
+    },
+    "max_total": 100,
+    "first_selection_only": true,
+    "critical_overrides_success_label": true,
+    "pass_threshold": null,
+    "validated_competency_measure": false
+  },
+  "engine_contract": {
+    "decision_order": [
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D6"
+    ],
+    "history_before_treatment": "Reveal H01–H07 before D5; tag missed history as teaching correction.",
+    "correction_policy": "Acknowledge required correction; keep original points, flags and delay; apply safe narrative actions once.",
+    "treatment_execution": "Only TX01 is administered. Incorrect D5 choices are proposals, not executed treatments. TX01 occurs once after correction.",
+    "resource_policy": "Before administration require authorization, availability, staff, supplies and quantity. Block on failure without awarding points.",
+    "missing_data_policy": "null means unknown, never normal",
+    "time_policy": "Usage seconds separate from fictional delay; only D3_C adds 60 avoidable minutes.",
+    "physiology_changes_enabled": false,
+    "randomness_enabled": false,
+    "export_free_text": false
+  },
+  "feedback_catalog": [
+    {
+      "id": "F01",
+      "decision_id": "D1",
+      "text": "Revisa la prioridad del soporte, la coordinación y las acciones que podían realizarse en paralelo.",
+      "question_id": "Q01",
+      "question": "¿Qué podías iniciar mientras coordinabas el siguiente nivel de atención?"
+    },
+    {
+      "id": "F02",
+      "decision_id": "D2",
+      "text": "La historia dirigida completa información que puede cambiar una prescripción y el destino asistencial.",
+      "question_id": "Q02",
+      "question": "¿Qué antecedente podía cambiar tu selección terapéutica?"
+    },
+    {
+      "id": "F03",
+      "decision_id": "D3",
+      "text": "Tu plan debe corresponder al inventario del turno. Un examen pendiente se comunica al receptor.",
+      "question_id": "Q03",
+      "question": "¿Qué examen podía esperar sin cambiar el destino del paciente?"
+    },
+    {
+      "id": "F04",
+      "decision_id": "D4",
+      "text": "Revisa por separado el puntaje de hospitalización y los datos necesarios para valorar severidad.",
+      "question_id": "Q04",
+      "question": "¿Qué dato distingue el riesgo calculado de la severidad aún no medida?"
+    },
+    {
+      "id": "F05",
+      "decision_id": "D5",
+      "text": "Comprueba el perfil del paciente, la autorización y los recursos de administración del esquema seleccionado.",
+      "question_id": "Q05",
+      "question": "¿Qué comprobaciones permitían administrar el esquema en este turno?"
+    },
+    {
+      "id": "F06",
+      "decision_id": "D6",
+      "text": "La referencia se completa con coordinación, soporte durante el traslado y entrega clínica.",
+      "question_id": "Q06",
+      "question": "¿Qué información debía recibir el equipo que continuaría la atención?"
+    }
+  ],
+  "tutor_contract": {
+    "purpose": "Select a locally authored reflection, not medical recommendations.",
+    "provider": null,
+    "model": null,
+    "model_selection_pending": true,
+    "max_calls_per_attempt": 1,
+    "max_input_tokens": 1500,
+    "max_output_tokens": 150,
+    "timeout_seconds": 10,
+    "no_automatic_retry": true,
+    "source_text_generation_allowed": false,
+    "output_required_keys": [
+      "focus_decision_id",
+      "feedback_id",
+      "question_id"
+    ],
+    "focus_rule": "Choose from decisions below maximum, or all six if perfect. Validate matching catalog triple.",
+    "fallback_label": "Reflexión seleccionada por reglas locales; IA no disponible."
+  },
+  "evidence": [
+    {
+      "id": "E01",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "1.1–1.2, pp. 31–32",
+      "type": "conditional",
+      "certainty": "very_low"
+    },
+    {
+      "id": "E02",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "1.3, p. 32",
+      "type": "good_practice",
+      "certainty": null
+    },
+    {
+      "id": "E03",
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "locator": "4.1 y 4.6; S01 pp. 36–37",
+      "type": "good_practice",
+      "certainty": null
+    },
+    {
+      "id": "E04",
+      "source_ids": [
+        "S02",
+        "S03"
+      ],
+      "locator": "4.6; lámina hospitalaria",
+      "type": "good_practice",
+      "certainty": null
+    },
+    {
+      "id": "E05",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "6.1–6.2, p. 40",
+      "type": "mixed",
+      "certainty": null
+    },
+    {
+      "id": "E06",
+      "source_ids": [
+        "S01",
+        "S03"
+      ],
+      "locator": "Tabla 2, pp. 38–39; lámina Criterios de severidad",
+      "type": "consideration",
+      "certainty": null
+    },
+    {
+      "id": "E07",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "4.2, p. 36",
+      "type": "strong_against",
+      "certainty": "low"
+    },
+    {
+      "id": "E08",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "7.1, pp. 41–42",
+      "type": "conditional",
+      "certainty": "very_low"
+    },
+    {
+      "id": "E09",
+      "source_ids": [
+        "S01"
+      ],
+      "locator": "Preguntas 8–9, pp. 43–45",
+      "type": "mixed",
+      "certainty": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "IETSI GPC 79, versión corta",
+      "year": 2025,
+      "url": "https://ietsi.essalud.gob.pe/wp-content/uploads/2025/12/GPC-NAC-adultos-version-corta.pdf",
+      "locator": "Preguntas 1, 4–8, pp. 31–43"
+    },
+    {
+      "id": "S02",
+      "title": "IETSI GPC 79, versión extensa",
+      "year": 2025,
+      "url": "https://ietsi.essalud.gob.pe/wp-content/uploads/2025/12/GPC-NAC-adultos-version-extensa.pdf",
+      "locator": "4.6; página no certificada"
+    },
+    {
+      "id": "S03",
+      "title": "IETSI resumen visual GPC 79",
+      "year": null,
+      "url": "https://ietsi.essalud.gob.pe/wp-content/uploads/2025/12/GPC-NAC-adultos-Resumen-visual.pdf",
+      "locator": "Láminas por título; fecha específica no verificada"
+    },
+    {
+      "id": "S04",
+      "title": "MINSA NTS 021, RM 546-2011",
+      "year": 2011,
+      "url": "https://app.inr.gob.pe/cajaherramientas/download/48874/",
+      "locator": "5.5–5.11 pp. 12–13; I-2 pp. 19–23; I-4 pp. 29–35"
+    },
+    {
+      "id": "S05",
+      "title": "MINSA RM 306-2020",
+      "year": 2020,
+      "url": "https://busquedas.elperuano.pe/dispositivo/NL/1866604-2",
+      "locator": "Artículo 2"
+    },
+    {
+      "id": "S06",
+      "title": "MINSA RM 625-2026",
+      "year": 2026,
+      "url": "https://busquedas.elperuano.pe/api/visor_html/2535379-1",
+      "locator": "Arts. 1–5 y 9–10; anexo completo no verificado"
+    },
+    {
+      "id": "S07",
+      "title": "MINSA PNUME 2023",
+      "year": 2023,
+      "url": "https://www.digemid.minsa.gob.pe/Archivos/Normatividad/2023/ANEXO_RM_633-2023-MINSA.pdf",
+      "locator": "6.1.5 p. 8; listado pp. 18, 20, 21"
+    },
+    {
+      "id": "S08",
+      "title": "MINSA RM 721-2024",
+      "year": 2024,
+      "url": "https://www.gob.pe/institucion/minsa/normas-legales/6116337-721-2024-minsa",
+      "locator": "Modifica 8.1 del PNUME"
+    },
+    {
+      "id": "S09",
+      "title": "DIGEMID ficha técnica ceftriaxona CEFOXBAC 1 g",
+      "year": null,
+      "url": "https://www.digemid.minsa.gob.pe/Archivos/FichasTecnicas/EspecialidadesFarmaceuticas/2023/EE11808_FT_V01.pdf",
+      "locator": "Dosis, administración, contraindicaciones; fecha de revisión no certificada"
+    },
+    {
+      "id": "S10",
+      "title": "MINSA RM 751-2004, NT 018",
+      "year": 2004,
+      "url": "https://www.gob.pe/institucion/minsa/normas-legales/253117-751-2004-minsa",
+      "locator": "Aprobación verificada; texto completo no accesible"
+    }
+  ]
+}

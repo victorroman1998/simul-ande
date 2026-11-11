@@ -1,0 +1,1295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SIMUL-ANDE · Case contract v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "case_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "product": {
+      "const": "SIMUL-ANDE"
+    },
+    "locale": {
+      "const": "es-PE"
+    },
+    "prepared_local_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "const": "America/Lima"
+    },
+    "fictional": {
+      "const": true
+    },
+    "objective": {
+      "type": "string"
+    },
+    "medical_review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "reviewed"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "pending",
+                  "approved",
+                  "modify"
+                ]
+              },
+              "reviewer": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "reviewer",
+              "date",
+              "reason"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "status",
+        "reviewer",
+        "reviewed_at",
+        "required_ids",
+        "decisions"
+      ],
+      "additionalProperties": false
+    },
+    "patient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sex": {
+          "const": "male"
+        },
+        "age_years": {
+          "type": "integer",
+          "minimum": 18
+        },
+        "weight_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "altitude_m_asl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "baseline_spo2_percent": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "chief_complaint": {
+          "type": "string"
+        },
+        "initial_vitals": {
+          "type": "object",
+          "properties": {
+            "temperature_c": {
+              "type": "number"
+            },
+            "heart_rate_per_min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "respiratory_rate_per_min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "systolic_bp_mmhg": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "diastolic_bp_mmhg": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "spo2_percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "oxygen_condition": {
+              "enum": [
+                "room_air",
+                "supplemental_oxygen"
+              ]
+            },
+            "signal_quality_confirmed": {
+              "type": "boolean"
+            },
+            "acute_confusion": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "temperature_c",
+            "heart_rate_per_min",
+            "respiratory_rate_per_min",
+            "systolic_bp_mmhg",
+            "diastolic_bp_mmhg",
+            "spo2_percent",
+            "oxygen_condition",
+            "signal_quality_confirmed",
+            "acute_confusion"
+          ],
+          "additionalProperties": false
+        },
+        "exam": {
+          "type": "string"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "topic",
+              "answer"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 7,
+          "maxItems": 7
+        },
+        "working_diagnosis": {
+          "type": "string"
+        },
+        "confirmed_pathogen": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "risk_reference": {
+          "type": "object",
+          "properties": {
+            "crb65_components": {
+              "type": "object",
+              "properties": {
+                "confusion": {
+                  "enum": [
+                    0,
+                    1
+                  ]
+                },
+                "respiratory_rate": {
+                  "enum": [
+                    0,
+                    1
+                  ]
+                },
+                "blood_pressure": {
+                  "enum": [
+                    0,
+                    1
+                  ]
+                },
+                "age": {
+                  "enum": [
+                    0,
+                    1
+                  ]
+                }
+              },
+              "required": [
+                "confusion",
+                "respiratory_rate",
+                "blood_pressure",
+                "age"
+              ],
+              "additionalProperties": false
+            },
+            "crb65_total": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "curb65_total": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5
+            },
+            "severe_cap_classification": {
+              "enum": [
+                "incomplete",
+                "severe",
+                "nonsevere"
+              ]
+            },
+            "unknowns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "evidence_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "crb65_components",
+            "crb65_total",
+            "curb65_total",
+            "severe_cap_classification",
+            "unknowns",
+            "evidence_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "sex",
+        "age_years",
+        "weight_kg",
+        "altitude_m_asl",
+        "baseline_spo2_percent",
+        "chief_complaint",
+        "initial_vitals",
+        "exam",
+        "history",
+        "working_diagnosis",
+        "confirmed_pathogen",
+        "risk_reference"
+      ],
+      "additionalProperties": false
+    },
+    "facilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/facility"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "unavailable_in_both": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "receiving_hospital": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fictional": {
+          "const": true
+        },
+        "playable": {
+          "const": false
+        },
+        "acceptance_available_in_script": {
+          "type": "boolean"
+        },
+        "capabilities_declared": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "fictional",
+        "playable",
+        "acceptance_available_in_script",
+        "capabilities_declared"
+      ],
+      "additionalProperties": false
+    },
+    "treatments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "required_resource_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "dose_plan": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "resource_id": {
+                  "type": "string"
+                },
+                "dose": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "route": {
+                  "enum": [
+                    "EV",
+                    "VO"
+                  ]
+                },
+                "reference_interval_hours": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "quantity_consumed": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "resource_id",
+                "dose",
+                "unit",
+                "route",
+                "reference_interval_hours",
+                "quantity_consumed"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          },
+          "simulation_scope": {
+            "const": "first_dose_before_transfer_only"
+          },
+          "full_course_duration_days": {
+            "type": "null"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "medical_validation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "required_resource_ids",
+          "dose_plan",
+          "simulation_scope",
+          "full_course_duration_days",
+          "evidence_ids",
+          "source_ids",
+          "medical_validation_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "result_fictional": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "visible_only_for": {
+            "type": "object",
+            "properties": {
+              "facility_id": {
+                "type": "string"
+              },
+              "option_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "facility_id",
+              "option_id"
+            ],
+            "additionalProperties": false
+          },
+          "teaching_time_jump_min": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "adds_avoidable_delay": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "turnaround_min": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "result",
+          "visible_only_for"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      },
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "domain_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "max_by_domain": {
+          "type": "object",
+          "properties": {
+            "reasoning": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "safety": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "resources": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "referral": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "reasoning",
+            "safety",
+            "resources",
+            "referral"
+          ],
+          "additionalProperties": false
+        },
+        "max_total": {
+          "const": 100
+        },
+        "first_selection_only": {
+          "const": true
+        },
+        "critical_overrides_success_label": {
+          "const": true
+        },
+        "pass_threshold": {
+          "type": "null"
+        },
+        "validated_competency_measure": {
+          "const": false
+        }
+      },
+      "required": [
+        "domain_order",
+        "max_by_domain",
+        "max_total",
+        "first_selection_only",
+        "critical_overrides_success_label",
+        "pass_threshold",
+        "validated_competency_measure"
+      ],
+      "additionalProperties": false
+    },
+    "engine_contract": {
+      "type": "object",
+      "properties": {
+        "decision_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "history_before_treatment": {
+          "type": "string"
+        },
+        "correction_policy": {
+          "type": "string"
+        },
+        "treatment_execution": {
+          "type": "string"
+        },
+        "resource_policy": {
+          "type": "string"
+        },
+        "missing_data_policy": {
+          "type": "string"
+        },
+        "time_policy": {
+          "type": "string"
+        },
+        "physiology_changes_enabled": {
+          "const": false
+        },
+        "randomness_enabled": {
+          "const": false
+        },
+        "export_free_text": {
+          "const": false
+        }
+      },
+      "required": [
+        "decision_order",
+        "history_before_treatment",
+        "correction_policy",
+        "treatment_execution",
+        "resource_policy",
+        "missing_data_policy",
+        "time_policy",
+        "physiology_changes_enabled",
+        "randomness_enabled",
+        "export_free_text"
+      ],
+      "additionalProperties": false
+    },
+    "feedback_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "decision_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "question_id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "decision_id",
+          "text",
+          "question_id",
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "tutor_contract": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_selection_pending": {
+          "type": "boolean"
+        },
+        "max_calls_per_attempt": {
+          "const": 1
+        },
+        "max_input_tokens": {
+          "const": 1500
+        },
+        "max_output_tokens": {
+          "const": 150
+        },
+        "timeout_seconds": {
+          "const": 10
+        },
+        "no_automatic_retry": {
+          "const": true
+        },
+        "source_text_generation_allowed": {
+          "const": false
+        },
+        "output_required_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "focus_rule": {
+          "type": "string"
+        },
+        "fallback_label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "purpose",
+        "provider",
+        "model",
+        "model_selection_pending",
+        "max_calls_per_attempt",
+        "max_input_tokens",
+        "max_output_tokens",
+        "timeout_seconds",
+        "no_automatic_retry",
+        "source_text_generation_allowed",
+        "output_required_keys",
+        "focus_rule",
+        "fallback_label"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "locator": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "conditional",
+              "good_practice",
+              "mixed",
+              "consideration",
+              "strong_against"
+            ]
+          },
+          "certainty": {
+            "enum": [
+              null,
+              "very_low",
+              "low",
+              "moderate",
+              "high"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "source_ids",
+          "locator",
+          "type",
+          "certainty"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "locator": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "year",
+          "url",
+          "locator"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "case_version",
+    "product",
+    "locale",
+    "prepared_local_date",
+    "timezone",
+    "fictional",
+    "objective",
+    "medical_review",
+    "patient",
+    "facilities",
+    "unavailable_in_both",
+    "receiving_hospital",
+    "treatments",
+    "tests",
+    "decisions",
+    "scoring",
+    "engine_contract",
+    "feedback_catalog",
+    "tutor_contract",
+    "evidence",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "authorized_in_scenario": {
+          "type": "boolean"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "staff_present": {
+          "type": "boolean"
+        },
+        "supplies_present": {
+          "type": "boolean"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unit": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "autonomy_min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turnaround_min": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "authorized_in_scenario",
+        "available",
+        "staff_present",
+        "supplies_present",
+        "quantity",
+        "unit",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "facility": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "F_I2",
+            "F_I4"
+          ]
+        },
+        "category_reference": {
+          "enum": [
+            "I-2",
+            "I-4"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "fictional": {
+          "const": true
+        },
+        "category_is_not_inventory": {
+          "const": true
+        },
+        "altitude_m_asl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "case_local_time": {
+          "type": "string"
+        },
+        "opening_hours": {
+          "type": "string"
+        },
+        "staff_on_duty": {
+          "type": "object",
+          "minProperties": 3,
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 8
+        },
+        "monitoring": {
+          "type": "string"
+        },
+        "beds": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "free": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "adequate_for_this_patient": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "total",
+            "free",
+            "adequate_for_this_patient"
+          ],
+          "additionalProperties": false
+        },
+        "advanced_support_available": {
+          "type": "boolean"
+        },
+        "reference_phone_available": {
+          "type": "boolean"
+        },
+        "transport": {
+          "type": "object",
+          "properties": {
+            "dispatch_min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "travel_min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "assisted": {
+              "type": "boolean"
+            },
+            "trained_team": {
+              "type": "boolean"
+            },
+            "oximetry": {
+              "type": "boolean"
+            },
+            "oxygen_autonomy_min": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "dispatch_min",
+            "travel_min",
+            "assisted",
+            "trained_team",
+            "oximetry",
+            "oxygen_autonomy_min"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "category_reference",
+        "label",
+        "fictional",
+        "category_is_not_inventory",
+        "altitude_m_asl",
+        "case_local_time",
+        "opening_hours",
+        "staff_on_duty",
+        "resources",
+        "monitoring",
+        "beds",
+        "advanced_support_available",
+        "reference_phone_available",
+        "transport"
+      ],
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^D[1-6]_[ABC]$"
+        },
+        "label": {
+          "type": "string"
+        },
+        "score": {
+          "type": "object",
+          "properties": {
+            "reasoning": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "safety": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "resources": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "referral": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "reasoning",
+            "safety",
+            "resources",
+            "referral"
+          ],
+          "additionalProperties": false
+        },
+        "consequence": {
+          "type": "string"
+        },
+        "critical_flag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requires_teaching_correction": {
+          "type": "boolean"
+        },
+        "avoidable_delay_min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reveal_history_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "label_by_facility": {
+          "type": "object",
+          "properties": {
+            "F_I2": {
+              "type": "string"
+            },
+            "F_I4": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "F_I2",
+            "F_I4"
+          ],
+          "additionalProperties": false
+        },
+        "requested_tests_by_facility": {
+          "type": "object",
+          "properties": {
+            "F_I2": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "F_I4": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "F_I2",
+            "F_I4"
+          ],
+          "additionalProperties": false
+        },
+        "treatment_id": {
+          "type": "string"
+        },
+        "treatment_after_correction_id": {
+          "type": "string"
+        },
+        "transfer_incomplete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "score",
+        "consequence",
+        "critical_flag",
+        "requires_teaching_correction",
+        "avoidable_delay_min"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": [
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "D5",
+            "D6"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "feedback_id": {
+          "type": "string"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "medical_validation_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "max_score": {
+          "type": "object",
+          "properties": {
+            "reasoning": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "safety": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "resources": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "referral": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "reasoning",
+            "safety",
+            "resources",
+            "referral"
+          ],
+          "additionalProperties": false
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/option"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "feedback_id",
+        "evidence_ids",
+        "source_ids",
+        "medical_validation_ids",
+        "max_score",
+        "options"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
