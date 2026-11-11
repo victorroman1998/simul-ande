@@ -17,7 +17,7 @@ from tutor import Settings, complete_tutor, validate_selection, eligible_decisio
 load_dotenv(ROOT / ".env")
 st.set_page_config(page_title="SIMUL-ANDE · Práctica con contexto", page_icon="⛰️", layout="wide")
 st.markdown("""<style>
-.block-container {max-width:1180px;padding-top:2rem;padding-bottom:3rem}
+.block-container {max-width:1180px;padding-top:4.5rem;padding-bottom:3rem}
 h1 {letter-spacing:-1.5px} div[data-testid="stMetric"] {background:#e8efec;border-radius:12px;padding:12px}
 div[data-testid="stRadio"] label {line-height:1.6} .stButton button {border-radius:9px}
 </style>""", unsafe_allow_html=True)
@@ -109,7 +109,9 @@ def inventory(facility):
              "Sin UCI, ventilación mecánica, vasopresores, tomografía, gasometría ni cultivos inmediatos.")
     oxygen = next(r for r in facility["resources"] if r["id"] == "oxygen")
     st.caption(f"Oxígeno en establecimiento: {oxygen['autonomy_min']} min de autonomía docente. No se calcula flujo ni consumo fisiológico.")
-    st.caption("Equipo presente: " + ", ".join(f"{k}: {v}" for k, v in facility["staff_on_duty"].items()))
+    staff_names = {"physician": "médicos", "nurse": "enfermeras", "nursing_technician": "técnicos",
+                   "laboratory_staff": "laboratoristas", "radiology_technologist": "tecnólogos de radiología"}
+    st.caption("Equipo presente: " + ", ".join(f"{staff_names[k]}: {v}" for k, v in facility["staff_on_duty"].items()))
 
 
 def patient_panel(state):
@@ -184,7 +186,9 @@ def show_result(state):
         st.write(record["text"])
         st.markdown(f"**{record['question']}**")
         cost = result["estimated_cost_usd"]
-        st.caption(f"Tokens entrada/salida: {result['input_tokens']} / {result['output_tokens']}. "
+        input_tokens = result['input_tokens'] if result['input_tokens'] is not None else 'no medidos'
+        output_tokens = result['output_tokens'] if result['output_tokens'] is not None else 'no medidos'
+        st.caption(f"Tokens entrada/salida: {input_tokens} / {output_tokens}. "
                    + (f"Costo estimado: USD {cost:.8f}." if cost is not None else "Costo no medido."))
     st.download_button("Descargar resultado anónimo · JSON",
                        json.dumps(export_attempt(state, case), ensure_ascii=False, indent=2),
