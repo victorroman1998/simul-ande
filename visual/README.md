@@ -2,6 +2,8 @@
 
 Prototipo vertical **ejecutable** con React, TypeScript y Phaser 3. Un paciente ficticio con NAC probable, dos inventarios y una sala 2D interactiva. Revisión clínica pendiente; no usar con pacientes reales.
 
+**[Jugar al prototipo público por HTTPS](https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/)** · sin inicio de sesión. Optimizado y comprobado en computadoras. El diseño estrecho ofrece una disposición apilada; la interacción clínica en teléfonos aún requiere validación de usabilidad.
+
 La rama `prototype/visual-phaser` conserva el MVP Python/Streamlit en la raíz. El despliegue anterior continúa apuntando a main; este frontend se compila y publica de manera independiente. [Diagnóstico verificable](../docs/visual/DIAGNOSIS.md).
 
 ## Ejecutar
@@ -66,3 +68,5 @@ Fuera del alcance: movimiento de un avatar médico, física corporal, imágenes 
 ## Evidencia
 
 [Pruebas y recorridos reales de navegador](../docs/visual/VALIDATION.md), [diagnóstico previo](../docs/visual/DIAGNOSIS.md), [caso y reglas originales](../spec/CLINICAL_RULES.md). Las capturas documentan software en ejecución; la implementación no reproduce un video.
+
+[Reglas del motor](../docs/visual/RULES.md) · [Despliegue y procedencia](../docs/visual/DEPLOYMENT.md).

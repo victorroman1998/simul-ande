@@ -1,4 +1,5 @@
 > **Rama `prototype/visual-phaser`: nuevo escenario React + TypeScript + Phaser en [`visual/`](visual/README.md).**
+> **[Abrir el nuevo simulador visual público](https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/)** · [Reglas y limitaciones](docs/visual/RULES.md) · [Despliegue verificado](docs/visual/DEPLOYMENT.md).
 > La aplicación Streamlit y la documentación histórica se conservan debajo. El enlace Streamlit corresponde al MVP anterior; no sirve el frontend nuevo. Véanse el [diagnóstico](docs/visual/DIAGNOSIS.md) y las [pruebas del simulador visual](docs/visual/VALIDATION.md).
 # SIMUL-ANDE
 

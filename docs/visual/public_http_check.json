@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-11-11T23:10:26.171Z",
+  "cookies_sent": false,
+  "authentication_sent": false,
+  "status": 200,
+  "url": "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/",
+  "assets": [
+    {
+      "url": "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/assets/index-Cvo8B8ua.js",
+      "status": 200,
+      "content_type": "text/javascript",
+      "bytes": 302514
+    },
+    {
+      "url": "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/assets/phaser-DFK5Ua9d.js",
+      "status": 200,
+      "content_type": "text/javascript",
+      "bytes": 1208056
+    },
+    {
+      "url": "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/assets/index-PEbrZsiW.css",
+      "status": 200,
+      "content_type": "text/css",
+      "bytes": 14294
+    }
+  ]
+}

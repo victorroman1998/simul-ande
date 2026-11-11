@@ -2,5 +2,6 @@
 # Original package and executable copies retain byte-exact SHA-256 values.
 spec/** -text
 data/** -text
+visual/src/data/*.json -text
 *.png binary
 *.jpg binary

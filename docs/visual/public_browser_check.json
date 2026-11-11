@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-11-11T23:09:20.260Z",
+  "url": "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/",
+  "browser": "real browser via CUA",
+  "case": "P-NAC-01",
+  "facility": "F_I2",
+  "canvas_pointer_interactions": true,
+  "complete_without_sequential_forms": true,
+  "restored_after_reload": {
+    "events": 5,
+    "minute": 6,
+    "baseline_spo2": 88
+  },
+  "final": {
+    "events": 10,
+    "minute": 14,
+    "score": 100,
+    "ceftriaxone": 2,
+    "azithromycin": 3,
+    "transfer_prepared": true
+  },
+  "clinical_review": "pending"
+}

@@ -46,7 +46,19 @@ Se administró TX01, se avanzó tiempo voluntariamente y apareció el informe si
 - [Sala I-4](screenshots/05_sala_i4.jpg)
 - [RX sintética de I-4](screenshots/06_rx_i4.jpg)
 
-La publicación HTTPS y su comprobación se registran después de recibir un despliegue exitoso. No se considera publicada una URL solo porque figure como `expected_url` de Sites.
+## HTTPS público y regresión remota
+
+La publicación de Sites terminó con estado `succeeded`, versión 1, y público sin inicio de sesión por instrucción del titular. [Abrir prototipo](https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/). El enlace Streamlit anterior no se sustituyó.
+
+Se navegó al despliegue real y se repitió I-2 en un orden diferente: referencia → entrevista → oxímetro → exploración → oxígeno → TX01 → entrega → preparación. Los instrumentos se aplicaron haciendo clic en el canvas Phaser. Se recargó en minuto 6: persistieron cinco eventos, SpO₂ basal 88 % y tiempo; luego se completó el caso con **10 eventos, 14 minutos, 100/100 y stock 2/3**. [Registro de navegador](public_browser_check.json), [captura HTTPS inicial de escritorio](screenshots/07_https_inicio.jpg), [reporte público](screenshots/08_https_resultado.jpg).
+
+Se comprobó el diseño de computadora a 1280×800 y el comportamiento en el ancho estrecho disponible en el navegador. La sala no se desmonta al usar paneles o instrumentos. El fallback estrecho apila paneles; no se afirma validación de usabilidad clínica en teléfonos.
+
+Una petición independiente, **sin cookies ni cabeceras de autenticación**, recibió HTTP 200 del HTML y de sus tres recursos JS/CSS con los MIME correctos. [Registro HTTP](public_http_check.json). No se usó un token para eludir la puerta de acceso.
+
+CI del commit de implementación `87bfa020cc80e3b349a4e640ced34c3bcde53c1e`: [visual, build + 17 pruebas](https://github.com/victorroman1998/simul-ande/actions/runs/43116529133) y [regresión Python](https://github.com/victorroman1998/simul-ande/actions/runs/43116528895), ambos exitosos. Los cambios posteriores de documentación y conservación de finales de línea no cambian las reglas ejecutadas.
+
+Los hashes SHA-256 del caso original y la copia visual coincidieron: `646a5d914b84b63540085147ddfff6459ac760db463b1a72b872f1224bb51c1d`. `.gitattributes` conserva sus bytes al clonar.
 
 ## Pendientes de validación humana
 
