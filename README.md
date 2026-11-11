@@ -1,3 +1,5 @@
+> **Rama `prototype/visual-phaser`: nuevo escenario React + TypeScript + Phaser en [`visual/`](visual/README.md).**
+> La aplicación Streamlit y la documentación histórica se conservan debajo. El enlace Streamlit corresponde al MVP anterior; no sirve el frontend nuevo. Véanse el [diagnóstico](docs/visual/DIAGNOSIS.md) y las [pruebas del simulador visual](docs/visual/VALIDATION.md).
 # SIMUL-ANDE
 
 Prototipo educativo para el proyecto final [#204 · Q-Lab PUCP](https://github.com/d2cml-ai/Data-Science-Python/issues/204). Un caso sintético, dos establecimientos ficticios y seis decisiones. **Contenido clínico en revisión médica; no usar para atender pacientes reales.**

@@ -1,0 +1,176 @@
+{
+  "product": "SIMUL-ANDE visual",
+  "fictional": true,
+  "medical_review": "pending",
+  "version": 2,
+  "caseVersion": "0.1.0",
+  "facilityId": "F_I2",
+  "phase": "completed",
+  "minute": 14,
+  "avoidableDelay": 0,
+  "history": [
+    "context",
+    "safety",
+    "symptoms"
+  ],
+  "examined": true,
+  "sensorAttached": true,
+  "oxygenStarted": true,
+  "txGiven": true,
+  "ceftriaxone": 2,
+  "azithromycin": 3,
+  "referralAt": 1,
+  "ambulanceAt": 31,
+  "handoverSignature": "[[\"context\",\"safety\",\"symptoms\"],true,true,true,true,\"not_requested\",false]",
+  "transferPrepared": true,
+  "xrayRequestedAt": null,
+  "xrayStatus": "not_requested",
+  "labRequested": false,
+  "criticalFlags": [],
+  "events": [
+    {
+      "id": "e1a8f831-7e3e-4e77-a111-02da951bbb21",
+      "kind": "oximetry",
+      "at": 0,
+      "duration": 1,
+      "accepted": true,
+      "text": "Sensor colocado: SpO₂ basal 88 % al aire ambiente, señal adecuada (dato del guion).",
+      "critical": false
+    },
+    {
+      "id": "98091005-e3ff-4911-93a7-9de5aa1ee21e",
+      "kind": "coordinate",
+      "at": 1,
+      "duration": 2,
+      "accepted": true,
+      "text": "H-01 confirma recepción ficticia. Traslado asistido activado; oxígeno de transporte independiente confirmado.",
+      "critical": false
+    },
+    {
+      "id": "271cd251-29b1-431a-9bb5-ec1c1f4b19fc",
+      "kind": "oxygen",
+      "at": 3,
+      "duration": 1,
+      "accepted": true,
+      "text": "Soporte con oxígeno instalado y monitorización prevista. No se simula flujo, meta ni respuesta fisiológica.",
+      "critical": false
+    },
+    {
+      "id": "8f4b1105-10dd-4db9-a0a6-5959cd3e3c8c",
+      "kind": "examine",
+      "at": 4,
+      "duration": 2,
+      "accepted": true,
+      "text": "Exploración: FR 32/min, PA 112/68, FC 112/min, T 38,5 °C; crepitantes basales derechos. Datos iniciales del guion.",
+      "critical": false
+    },
+    {
+      "id": "cef4a545-09ec-483c-b829-a049fb8c844c",
+      "kind": "interview_context",
+      "at": 6,
+      "duration": 1,
+      "accepted": true,
+      "text": "Entrevista: tolera vía oral; antecedentes, TB/aspiración y apoyo familiar registrados.",
+      "critical": false
+    },
+    {
+      "id": "2d30b562-4a98-4403-98eb-b917d33688e3",
+      "kind": "interview_safety",
+      "at": 7,
+      "duration": 1,
+      "accepted": true,
+      "text": "Entrevista: niega alergias conocidas; sin antibióticos ni hospitalización en 90 días.",
+      "critical": false
+    },
+    {
+      "id": "bd6c323c-abb1-42d5-beb1-9344725399d4",
+      "kind": "interview_symptoms",
+      "at": 8,
+      "duration": 1,
+      "accepted": true,
+      "text": "Entrevista: evolución de fiebre, tos y disnea registrada.",
+      "critical": false
+    },
+    {
+      "id": "c801d26d-a09b-4d88-9d7d-b9afb9978853",
+      "kind": "tx01",
+      "at": 9,
+      "duration": 3,
+      "accepted": true,
+      "text": "TX01: primera administración simulada; 2 viales de ceftriaxona 1 g y 1 tableta de azitromicina 500 mg. Adaptación VM-03 pendiente.",
+      "critical": false
+    },
+    {
+      "id": "305f579d-6d0b-4ae7-b0b6-fbe31a4c27cd",
+      "kind": "handover",
+      "at": 12,
+      "duration": 1,
+      "accepted": true,
+      "text": "Entrega clínica registrada con hallazgos disponibles, soporte, tratamientos y pendientes. Nuevos hallazgos requieren actualizarla.",
+      "critical": false
+    },
+    {
+      "id": "7d76704b-c7a8-4f2d-b0ea-3eb4d7af3057",
+      "kind": "prepare_transfer",
+      "at": 13,
+      "duration": 1,
+      "accepted": true,
+      "text": "Transferencia preparada y caso educativo finalizado. No equivale a traslado realizado ni a mejoría clínica.",
+      "critical": false
+    }
+  ],
+  "evaluation": {
+    "domains": [
+      {
+        "name": "Razonamiento",
+        "max": 25,
+        "score": 25,
+        "notes": [
+          "Entrevista dirigida completa.",
+          "Examen inicial registrado; CRB-65 del guion = 2.",
+          "La urea y PaO₂/FiO₂ permanecen desconocidas; severidad ATS/IDSA incompleta."
+        ]
+      },
+      {
+        "name": "Seguridad",
+        "max": 35,
+        "score": 35,
+        "notes": [
+          "Soporte instalado sin inventar mejoría.",
+          "TX01 consumió exactamente 2 viales y 1 tableta; propuesta VM-03 pendiente.",
+          "No se registraron propuestas críticas interceptadas."
+        ]
+      },
+      {
+        "name": "Recursos",
+        "max": 20,
+        "score": 20,
+        "notes": [
+          "La categoría no garantiza stock ni autorización.",
+          "Omitir RX en este guion no penaliza: puede completarse en el receptor.",
+          "Stock restante: 2 viales y 3 tabletas. No hay sustituciones automáticas."
+        ]
+      },
+      {
+        "name": "Referencia",
+        "max": 20,
+        "score": 20,
+        "notes": [
+          "Referencia activada en minuto 1. Coordinación temprana en este guion.",
+          "El corte de 5 min es una ponderación docente propuesta, no un plazo normativo.",
+          "Transferencia preparada, sin afirmar que se realizó."
+        ]
+      }
+    ],
+    "total": 100,
+    "critical": false
+  },
+  "unknowns": [
+    "urea",
+    "pao2_fio2",
+    "leucocitos",
+    "plaquetas",
+    "respuesta_fisiologica_posterior"
+  ],
+  "source_case_version": "0.1.0"
+}

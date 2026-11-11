@@ -1,0 +1,22 @@
+name: Verify visual simulation
+on:
+  push:
+    branches: [prototype/visual-phaser]
+    paths: ['visual/**', '.github/workflows/visual.yml']
+  pull_request:
+    paths: ['visual/**', '.github/workflows/visual.yml']
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: visual
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install -g pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
