@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09232b">
+<meta name="description" content="SIMUL-ANDE · presentación horizontal del simulador clínico 2D para el diplomado PUCP.">
+<title>SIMUL-ANDE | Presentación · Q-Lab PUCP</title>
+<style>
+:root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; --ink:#e8f3f1; --muted:#a4bcc0; --teal:#75ddd1; --line:#37565b; --panel:#123640; }
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#06171d;color:var(--ink)}
+body{display:flex;align-items:center;justify-content:center;padding:1.6vmin;line-height:1.35}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #bcebe5;outline-offset:4px}
+.slide{width:min(96vw,1600px);aspect-ratio:16/9;min-height:0;max-height:96vh;overflow:hidden;border:1px solid #2b4851;border-radius:17px;background:radial-gradient(ellipse at 76% 28%,#19515a 0,transparent 50%),linear-gradient(125deg,#0b2630 0%,#0c2934 53%,#112d39 100%);box-shadow:0 20px 80px #0007;display:grid;grid-template-rows:auto minmax(0,1fr) auto;position:relative}
+.slide::after{content:"";position:absolute;width:23vw;height:23vw;border:1px solid #70aba82e;border-radius:50%;right:-12vw;top:-12vw;pointer-events:none}
+header{padding:2.05% 3.45% 1.3%;display:flex;align-items:center;gap:1.3%;border-bottom:1px solid #ffffff16;min-height:0}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(17px,1.6vw,25px);letter-spacing:.06em;white-space:nowrap}
+.logo-mark{width:33px;height:33px;border:2.5px solid var(--teal);transform:rotate(45deg);border-radius:4px;display:grid;place-items:center;flex-shrink:0}
+.logo-mark span{display:block;border:2px solid var(--teal);width:15px;height:15px;border-radius:3px}
+.sublabel{font-weight:400;font-size:clamp(11px,.9vw,14px);letter-spacing:.06em;color:var(--muted);margin-left:8px}
+.head-actions{margin-left:auto;display:flex;gap:9px;align-items:center}
+.tool{background:transparent;border:1px solid #6f969c70;border-radius:8px;color:#d0e5e3;padding:7px 11px;font-size:clamp(10px,.91vw,13px);white-space:nowrap}
+.tool:hover{background:#24515b}
+.timer{font-variant-numeric:tabular-nums;min-width:45px;text-align:center;color:var(--teal);font-size:clamp(12px,1.15vw,16px);font-weight:700}
+.content{min-height:0;display:grid;grid-template-columns:51% 49%;gap:0}
+.left{padding:4.1% 5.4% 3.2% 6.7%;display:flex;flex-direction:column;min-height:0;justify-content:space-between}
+.eyebrow{text-transform:uppercase;color:var(--teal);font-size:clamp(10px,.85vw,14px);font-weight:700;letter-spacing:.17em}
+h1{font-size:clamp(30px,3.18vw,53px);line-height:1.10;letter-spacing:-.038em;margin:2.5% 0 2.3%;font-weight:780;max-width:13ch}
+h1 em{font-style:normal;color:var(--teal)}
+.lead{color:#d4e2e4;font-size:clamp(13px,1.16vw,18px);line-height:1.53;margin:0;max-width:62ch}
+.divider{height:1px;background:#89b5bb35;margin:3.6% 0}
+.three{display:grid;grid-template-columns:1fr 1fr;gap:13px;align-content:start}
+.field{padding:0 3% 0 0}
+.field h2{font-size:clamp(11px,.95vw,15px);margin:0 0 6px;color:#b3ece5;letter-spacing:.02em}
+.field p{margin:0;color:#c4d5d7;font-size:clamp(11px,.88vw,14px);line-height:1.4}
+.bottom-left{margin-top:3%;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.primary{background:#8ae3d5;color:#0b2730;border:0;padding:11px 19px;border-radius:10px;font-size:clamp(13px,1.06vw,17px);font-weight:800;box-shadow:0 3px 16px #62d0c84d;white-space:nowrap}
+.primary:hover{background:#b2f5eb}
+.textlink{font-size:clamp(12px,.95vw,15px);font-weight:700;color:#d6f2ee;text-decoration:underline;text-underline-offset:4px}
+.right{padding:3.4% 5% 3.9% 3.1%;display:flex;min-height:0;flex-direction:column;justify-content:center}
+.visual{border:1px solid #ffffff2e;border-radius:15px;background:#051920;min-height:0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 35px #0005}
+.visual-top{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:#1b3b46;gap:8px;font-size:clamp(9px,.78vw,13px);letter-spacing:.05em;color:#deefef}
+.pill{border-radius:18px;background:#a1e7dc25;color:#c0f8eb;padding:4px 9px;white-space:nowrap}
+.game-photo{display:block;object-fit:contain;object-position:center;width:100%;aspect-ratio:1.70;background:#071e25}
+.image-fallback{display:none;padding:28px;color:#b3d9d4;text-align:center}
+.visual-info{background:#0e3039;padding:2.6% 3.5%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.visual-info div{border-right:1px solid #ffffff24;padding-right:5px}
+.visual-info div:last-child{border-right:0}
+.visual-info strong{display:block;color:#d7f3ee;font-size:clamp(11px,.97vw,16px)}
+.visual-info span{font-size:clamp(9px,.77vw,12px);color:#aac8cb}
+.disclaimer{font-size:clamp(9px,.76vw,12px);color:#a2bfc2;margin-top:10px;line-height:1.4}
+footer{border-top:1px solid #ffffff22;background:#061e27a8;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:1.1% 3.5% 1.35%}
+.segment{display:flex;align-items:center;gap:12px;min-width:0}
+.segment>span{display:flex;align-items:center;justify-content:center;border-radius:50%;width:35px;height:35px;background:#25515b;color:#b7f2e9;font-weight:700;font-size:clamp(11px,.9vw,14px);flex-shrink:0}
+.segment strong{display:block;font-size:clamp(11px,.95vw,15px)}
+.segment small{color:#a5bec3;font-size:clamp(9px,.76vw,12px)}
+#rubric{max-width:min(94vw,820px);max-height:86vh;overflow-y:auto;border:1px solid #4c7780;border-radius:15px;background:#102a34;color:#e4f2f1;padding:28px 31px;box-shadow:0 22px 100px #0009}
+#rubric::backdrop{background:#000c}
+#rubric h2{margin:0 0 6px;font-size:24px}
+#rubric p{color:#bed1d2;font-size:14px;line-height:1.5}
+#rubric table{width:100%;border-collapse:collapse;margin:16px 0;color:#e4f2f1;font-size:14px}
+#rubric td,#rubric th{text-align:left;border-bottom:1px solid #33525d;padding:9px 7px;vertical-align:top}
+#rubric td:nth-child(2),#rubric th:nth-child(2){font-weight:700;text-align:center;white-space:nowrap}
+#rubric .warn{color:#e9c598}
+#rubric .close{float:right;margin-left:15px}
+@media (max-aspect-ratio: 14/9){body{padding:8px;align-items:flex-start}.slide{width:100%;max-height:none;aspect-ratio:auto;grid-template-rows:auto auto auto}.content{grid-template-columns:1fr}.left,.right{padding:24px}.left{gap:16px}h1{max-width:none;font-size:clamp(32px,5vw,48px)}.lead{font-size:16px}.field p{font-size:13px}.right{padding-top:0}.visual-info strong{font-size:13px}.visual-info span{font-size:11px}footer{padding:13px;gap:8px}header{padding:14px 20px;flex-wrap:wrap}.head-actions{flex-wrap:wrap}}
+@media (max-width:650px){.logo .sublabel{display:none}footer{grid-template-columns:1fr}.segment{min-height:29px}.three{grid-template-columns:1fr 1fr}.visual-top{font-size:11px}.visual-info{grid-template-columns:1fr 1fr 1fr}.head-actions .tool{font-size:10px;padding:6px}}
+@media print{body{padding:0;background:#fff}.slide{width:100vw;height:100vh;max-height:none;border:0;border-radius:0;box-shadow:none;page-break-after:always}.head-actions,.bottom-left .primary,.bottom-left .textlink{display:none}@page{size:16in 9in;margin:0}}
+</style>
+</head>
+<body>
+<article class="slide" aria-label="Presentación única de SIMUL-ANDE">
+<header>
+  <div class="logo"><div class="logo-mark" aria-hidden="true"><span></span></div>SIMUL-ANDE <span class="sublabel">GUARDIA VIRTUAL · 0.2</span></div>
+  <div class="head-actions">
+    <span class="timer" id="timer" aria-label="Cronómetro de exposición">03:00</span>
+    <button type="button" class="tool" id="timerBtn" title="Iniciar o pausar cronómetro">Ensayar 3 min</button>
+    <button type="button" class="tool" id="rubricBtn">Rúbrica / notas</button>
+    <button type="button" class="tool" id="fullBtn" title="Pantalla completa">⛶ Pantalla</button>
+  </div>
+</header>
+<div class="content">
+<section class="left">
+  <div>
+    <div class="eyebrow">Educación médica · Perú · Proyecto final Q-Lab PUCP</div>
+    <h1>Decisiones clínicas <em>con los recursos disponibles.</em></h1>
+    <p class="lead"><strong>Problema por validar:</strong> los casos desarrollados para entornos con recursos amplios no siempre representan las decisiones que deben tomar internos y médicos generales en el primer nivel peruano.</p>
+    <div class="divider"></div>
+    <div class="three">
+      <div class="field"><h2>Para quién</h2><p>Estudiantes de medicina, internos y futuros médicos SERUMS.</p></div>
+      <div class="field"><h2>Qué hacemos</h2><p>Paciente 2D interactivo, observación, intervenciones y referencia dentro de una misma sala.</p></div>
+      <div class="field"><h2>Diferenciación</h2><p>Dos establecimientos ficticios I-2/I-4 con inventarios explícitos y acciones contextualizadas.</p></div>
+      <div class="field"><h2>Negocio inicial</h2><p>Piloto docente hipotético: <strong>S/300</strong> por cuatro semanas, hasta 30 participantes.</p></div>
+    </div>
+  </div>
+  <div class="bottom-left">
+    <a class="primary" id="demoLink" target="_blank" rel="noopener noreferrer" href="https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/">Abrir simulador en vivo ↗</a>
+    <a class="textlink" target="_blank" rel="noopener noreferrer" href="https://github.com/victorroman1998/simul-ande/tree/prototype/visual-phaser">Código y pruebas ↗</a>
+  </div>
+</section>
+<section class="right">
+  <div class="visual">
+    <div class="visual-top"><strong>SIMULACIÓN EN NAVEGADOR</strong><span class="pill">React + Phaser · 2D</span></div>
+    <img class="game-photo" alt="Captura auténtica del simulador visual SIMUL-ANDE en un consultorio ficticio I-2." src="https://raw.githubusercontent.com/victorroman1998/simul-ande/prototype/visual-phaser/docs/visual/screenshots/07_https_inicio.jpg" onerror="this.style.display='none';document.getElementById('fallback').style.display='block';">
+    <div class="image-fallback" id="fallback">Captura del simulador 2D: abrir la demo en vivo para mostrar el entorno interactivo.</div>
+    <div class="visual-info">
+      <div><strong>1 paciente ficticio</strong><span>Neumonía comunitaria</span></div>
+      <div><strong>2 establecimientos</strong><span>I-2 / I-4 hipotéticos</span></div>
+      <div><strong>Acciones registradas</strong><span>Inventario y referencia</span></div>
+    </div>
+  </div>
+  <div class="disclaimer">Estado: prototipo formativo. Revisión médica y entrevistas con usuarios pendientes. API PubMed (sesión 03) en el MVP anterior; evaluación gráfica (sesión 05) en la versión visual.</div>
+</section>
+</div>
+<footer>
+  <div class="segment"><span>1</span><div><strong>Problema</strong><small>0:00–0:30 · usuario y contexto</small></div></div>
+  <div class="segment"><span>2</span><div><strong>Demo real</strong><small>0:30–2:30 · interactuar y evaluar</small></div></div>
+  <div class="segment"><span>3</span><div><strong>Negocio</strong><small>2:30–3:00 · precio y próximos pasos</small></div></div>
+</footer>
+</article>
+<dialog id="rubric">
+  <button type="button" class="tool close" id="closeRubric">Cerrar ✕</button>
+  <h2>Rúbrica oficial · 20 puntos</h2>
+  <p>La presentación no sustituye la demo. La consigna exige software funcionando en vivo y permite una sola diapositiva de apoyo.</p>
+  <table>
+  <thead><tr><th>Criterio</th><th>Puntos</th><th>Evidencia o brecha</th></tr></thead>
+  <tbody>
+    <tr><td>Demo funcional</td><td>8</td><td>Sala Phaser, paciente, instrumentos, estado y evaluación; mostrar flujo real.</td></tr>
+    <tr><td>Problema + 3 entrevistas</td><td>3</td><td class="warn">Hipótesis descrita; tres entrevistas reales pendientes.</td></tr>
+    <tr><td>Solución, insight, why now</td><td>2</td><td>Comparación I-2/I-4, recursos explícitos y tecnología web 2D.</td></tr>
+    <tr><td>Negocio, precio y costos</td><td>2</td><td class="warn">Piloto S/300 es hipotético; costos de alojamiento/soporte no medidos.</td></tr>
+    <tr><td>Dos herramientas del curso</td><td>2</td><td class="warn">Dashboard visual (05); API PubMed (03) solo en MVP Streamlit anterior.</td></tr>
+    <tr><td>Repositorio</td><td>2</td><td>Rama visual pública, README y pruebas; validar documentación y commits.</td></tr>
+    <tr><td>Exposición clara de 3 min</td><td>1</td><td>30 s problema + 120 s demo + 30 s negocio.</td></tr>
+  </tbody>
+  </table>
+  <h2>Guion operativo</h2>
+  <p><strong>0:00–0:30.</strong> Mostrar la necesidad educativa sin afirmar eficacia demostrada. <strong>0:30–2:30.</strong> Abrir demo: seleccionar paciente, oxímetro, soporte, referencia y resultado. <strong>2:30–3:00.</strong> Piloto hipotético S/300; siguientes pasos: revisión clínica, tres entrevistas y validación educativa.</p>
+  <p><strong>Precaución:</strong> no presentar el video del MVP Streamlit como evidencia del simulador 2D. Las herramientas 03 y 05 todavía no están integradas en una misma interfaz.</p>
+  <a class="textlink" href="https://github.com/d2cml-ai/Data-Science-Python/issues/204" target="_blank" rel="noopener noreferrer">Consigna oficial ↗</a>
+</dialog>
+<script>
+const rub=document.getElementById('rubric');
+document.getElementById('rubricBtn').addEventListener('click',()=>rub.showModal());
+document.getElementById('closeRubric').addEventListener('click',()=>rub.close());
+document.getElementById('fullBtn').addEventListener('click',()=>{
+ if(!document.fullscreenElement){document.documentElement.requestFullscreen?.();}else{document.exitFullscreen?.();}
+});
+let seconds=180,handle=null;
+const clock=document.getElementById('timer'),timerBtn=document.getElementById('timerBtn');
+function showTime(){clock.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'); if(seconds===0){clock.style.color='#f0b0a1';}}
+function toggleTime(){
+ if(handle){clearInterval(handle);handle=null;timerBtn.textContent='Reanudar';return;}
+ if(seconds===0)seconds=180;
+ timerBtn.textContent='Pausar';
+ handle=setInterval(()=>{seconds=Math.max(0,seconds-1);showTime();if(seconds===0){clearInterval(handle);handle=null;timerBtn.textContent='Reiniciar';}},1000);
+}
+timerBtn.addEventListener('click',toggleTime);
+document.addEventListener('keydown',e=>{
+ if(e.target?.tagName==='INPUT')return;
+ if(e.key.toLowerCase()==='r'&&!rub.open)rub.showModal();
+ if(e.key.toLowerCase()==='f'&&!rub.open){e.preventDefault();document.getElementById('fullBtn').click();}
+ if(e.key===' '&&!rub.open){e.preventDefault();toggleTime();}
+});
+</script>
+</body>
+</html>
