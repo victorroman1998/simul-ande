@@ -3,7 +3,10 @@ import {newState,reduce,restore,evaluate,facility,STORAGE_KEY,type ActionKind,ty
 import {SimulationStore} from '../src/clinical/store';
 
 let serial=0;
-function run(s:SimState,k:ActionKind){return reduce(s,{kind:k,id:`test-${++serial}`});}
+function run(s:SimState,k:ActionKind){
+  if(k==='oxygen'&&!s.oxygen.sourceId){for(const [kind,value] of [['select_source','station'],['check_oxygen',undefined],['select_device','nasal'],['select_flow',2]] as const)s=reduce(s,{kind,value,id:`setup-${++serial}`});}
+  return reduce(s,{kind:k,id:`test-${++serial}`});
+}
 const interview:ActionKind[]=['interview_symptoms','interview_safety','interview_context'];
 function permutations<T>(values:T[]):T[][]{return values.length===0?[[]]:values.flatMap((x,i)=>permutations(values.filter((_,j)=>j!==i)).map(p=>[x,...p]));}
 function complete(id:FacilityId='F_I2'){
@@ -36,8 +39,8 @@ describe('free-order clinical engine',()=>{
     const i2=run(newState(),'request_xray');expect(i2.xrayStatus).toBe('not_requested');expect(i2.events.at(-1)?.accepted).toBe(false);
     let i4=run(newState('F_I4'),'request_xray');expect(i4.xrayStatus).toBe('pending');for(let i=0;i<4;i++)i4=run(i4,'wait');expect(i4.xrayStatus).toBe('available');
   });
-  it('has no invented physiology or post-support readings',()=>{
-    const s=run(run(newState(),'oxygen'),'oximetry');expect(s.events.at(-1)?.text).toContain('No hay medición posterior');expect(s).not.toHaveProperty('improvedSpo2');expect(s).not.toHaveProperty('survival');
+  it('has no invented physiology or immediate post-support readings',()=>{
+    const s=run(run(newState(),'oxygen'),'oximetry');expect(s.events.at(-1)?.text).toContain('Reevaluación pendiente');expect(s.oxygen.reading.spo2).toBeNull();expect(s).not.toHaveProperty('survival');
   });
   it('allows early coordination, rejects unsafe exit and retains its critical flag',()=>{
     let s=run(newState(),'unassisted_exit');for(const k of ['coordinate',...interview,'oxygen','oximetry','examine','tx01','handover','prepare_transfer'] as ActionKind[])s=run(s,k);
@@ -59,5 +62,5 @@ describe('free-order clinical engine',()=>{
     const a=new SimulationStore(storage);a.select('phone');expect(a.getSnapshot().simulation.minute).toBe(0);a.act('coordinate','coordinate');a.arm('oximeter');a.select('patient');expect(a.getSnapshot().simulation.sensorAttached).toBe(true);
     const b=new SimulationStore(storage);expect(b.getSnapshot().simulation).toEqual(a.getSnapshot().simulation);expect(map.has(STORAGE_KEY)).toBe(true);b.reset('F_I4');expect(b.getSnapshot().simulation.events).toEqual([]);expect(b.getSnapshot().simulation.ceftriaxone).toBe(20);
   });
-  it('survives denied storage without losing the usable session',()=>{const store=new SimulationStore({getItem:()=>{throw Error('denied');},setItem:()=>{throw Error('denied');}});store.act('oxygen');expect(store.getSnapshot().simulation.oxygenStarted).toBe(true);expect(store.getSnapshot().storageWarning).toBe(true);});
+  it('survives denied storage without losing the usable session',()=>{const store=new SimulationStore({getItem:()=>{throw Error('denied');},setItem:()=>{throw Error('denied');}});store.act('coordinate');expect(store.getSnapshot().simulation.referralAt).toBe(0);expect(store.getSnapshot().storageWarning).toBe(true);});
 });

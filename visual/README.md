@@ -1,4 +1,14 @@
-# SIMUL-ANDE · Guardia virtual 0.2
+# SIMUL-ANDE Visual · Guardia virtual 0.3
+
+Actualización incremental con interfaz técnica, monitor integrado en Phaser y accesible en HTML, configuración de fuente/dispositivo/flujo, respuestas explícitas en JSON y reserva en minutos docentes. Mantiene el motor de decisiones, los dos establecimientos, entrevista, examen, inventarios, TX01, bitácora y evaluación.
+
+**[Documentación vigente de v0.3, VM-06, pruebas, capturas y reversión](../docs/visual/V03.md).** La URL y el proyecto de Sites se conservan. `pnpm test` y `pnpm build` se ejecutan desde este directorio; salida estática en `dist/`.
+
+Persistencia v3 con migración automática y aviso para intentos v2. Los signos aparecen después de medirlos. Las respuestas posteriores al oxígeno son guiones ficticios pendientes de VM-06; no son recomendaciones ni modelos fisiológicos. Las combinaciones sin guion no producen números. La altitud original sigue siendo 100 m s. n. m.
+
+## Archivo histórico: comportamiento de la versión 0.2
+
+El contenido siguiente describe la versión previa. Para oxígeno, monitor, persistencia y límites clínicos actuales consultar la documentación de v0.3 enlazada arriba.
 
 Prototipo vertical **ejecutable** con React, TypeScript y Phaser 3. Un paciente ficticio con NAC probable, dos inventarios y una sala 2D interactiva. Revisión clínica pendiente; no usar con pacientes reales.
 

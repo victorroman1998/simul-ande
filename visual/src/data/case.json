@@ -17,7 +17,8 @@
       "VM-02",
       "VM-03",
       "VM-04",
-      "VM-05"
+      "VM-05",
+      "VM-06"
     ],
     "decisions": []
   },
@@ -217,7 +218,8 @@
         "trained_team": true,
         "oximetry": true,
         "oxygen_autonomy_min": 180
-      }
+      },
+      "location_label": "Localidad ficticia · nombre no consignado en el caso"
     },
     {
       "id": "F_I4",
@@ -335,7 +337,8 @@
         "trained_team": true,
         "oximetry": true,
         "oxygen_autonomy_min": 180
-      }
+      },
+      "location_label": "Localidad ficticia · nombre no consignado en el caso"
     }
   ],
   "unavailable_in_both": [
@@ -1109,5 +1112,76 @@
       "url": "https://www.gob.pe/institucion/minsa/normas-legales/253117-751-2004-minsa",
       "locator": "Aprobación verificada; texto completo no accesible"
     }
-  ]
+  ],
+  "oxygen_simulation": {
+    "review_id": "VM-06",
+    "status": "pending_medical_review",
+    "baseline_spo2_percent": 88,
+    "warning": "Guion ficticio sin validación médica. Los flujos habilitados son controles del ejercicio, no recomendaciones clínicas. No hay conversión flujo–SpO₂, objetivo terapéutico ni predicción fisiológica. Una mejoría simulada no determina estabilidad ni autoriza traslado.",
+    "reserve_policy": "Se descuentan minutos docentes de soporte de la autonomía declarada. No se calcula presión, volumen de gas ni consumo proporcional al flujo. Autonomía logística ficticia pendiente de VM-06.",
+    "devices": [
+      {
+        "id": "nasal",
+        "label": "Cánula nasal · control docente",
+        "flows_lpm": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "mask",
+        "label": "Mascarilla simple · control docente",
+        "flows_lpm": [
+          5,
+          6,
+          8,
+          10
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "base",
+        "label": "Guion base · fuente operativa",
+        "source_status": "operational"
+      },
+      {
+        "id": "empty",
+        "label": "Variante ficticia · fuente vacía",
+        "source_status": "empty"
+      }
+    ],
+    "responses": [
+      {
+        "id": "NAC-DEMO-A",
+        "source_status": "operational",
+        "device_id": "nasal",
+        "flow_lpm": 2,
+        "reevaluation_min": 5,
+        "simulated_spo2_percent": 94,
+        "insufficient": false,
+        "interpretation": "Mejoría simulada escrita en el guion A. No demuestra estabilidad ni elimina la necesidad de evaluación y referencia."
+      },
+      {
+        "id": "NAC-DEMO-B",
+        "source_status": "operational",
+        "device_id": "nasal",
+        "flow_lpm": 1,
+        "reevaluation_min": 5,
+        "simulated_spo2_percent": 89,
+        "insufficient": true,
+        "interpretation": "Respuesta insuficiente en el guion B. Reevaluar y coordinar soporte y referencia; no se prescribe un ajuste automático."
+      }
+    ],
+    "insufficient_conditions": [
+      "Fuente no operativa o sin reserva: no se genera una lectura posterior.",
+      "Guion NAC-DEMO-B: respuesta insuficiente explícita.",
+      "Combinación sin respuesta escrita: Respuesta no validada.",
+      "Antes del tiempo escrito: Reevaluación pendiente."
+    ]
+  }
 }
