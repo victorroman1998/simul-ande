@@ -1,0 +1,28 @@
+﻿{
+    "CheckedAtUtc":  "2026-11-12T01:41:25.8008623Z",
+    "URL":  "https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/",
+    "Status":  200,
+    "CookiesSent":  false,
+    "Redirect":  "",
+    "TitleV031":  true,
+    "Assets":  [
+                   {
+                       "Path":  "assets/index-C2UPiJmp.js",
+                       "Status":  200,
+                       "SHA256":  "9652032D88077073A71655FE2D036A968B29189730F5AE20476C46ECA000FE52",
+                       "MatchesBuild":  true
+                   },
+                   {
+                       "Path":  "assets/phaser-DFK5Ua9d.js",
+                       "Status":  200,
+                       "SHA256":  "F9025C1A29BC3AE097DD886CE07717B297466DA1CE8F032C8294252CE6CF5CDB",
+                       "MatchesBuild":  true
+                   },
+                   {
+                       "Path":  "assets/index-C5s53n1Z.css",
+                       "Status":  200,
+                       "SHA256":  "5FC1B4A91DA8AB5F3B1704DCA590AD57405570CDB2922B60F7D5EF04774758F8",
+                       "MatchesBuild":  true
+                   }
+               ]
+}

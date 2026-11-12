@@ -1,6 +1,6 @@
 # Prototipo publicado y conservación de main
 
-**Actualización vigente:** [publicación v0.3 verificada y reversión](V03-DEPLOYMENT.md). Se conservan proyecto, audiencia pública y URL. El texto siguiente registra la publicación histórica de v0.2.
+**Actualización vigente:** [publicación v0.3.1 verificada y reversión](V031-DEPLOYMENT.md). Se conservan proyecto, audiencia pública y URL. El texto siguiente registra la publicación histórica de v0.2.
 
 **URL pública auténtica:** https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/
 
