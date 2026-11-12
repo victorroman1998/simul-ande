@@ -1,9 +1,9 @@
 import {describe,it,expect} from 'vitest';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {newState,reduce,restore,facility,caseData,LEGACY_STORAGE_KEY,STORAGE_KEY,type SimState,type ActionKind} from '../src/clinical/engine';
+import {newState,reduce,restore,facility,caseData,transferGuidance,LEGACY_STORAGE_KEY,STORAGE_KEY,type SimState,type ActionKind} from '../src/clinical/engine';
 import {SimulationStore} from '../src/clinical/store';
 import {monitor,reserve,supportActive} from '../src/clinical/oxygen';
-import {MonitorReadout,FacilityContext} from '../src/ClinicalPanels';
+import {MonitorReadout,FacilityContext,TransferPanel} from '../src/ClinicalPanels';
 let serial=0;
 const act=(s:SimState,kind:ActionKind,value?:string|number)=>reduce(s,{kind,value,id:`v3-${++serial}`});
 function setup(s=newState(),flow=2,device='nasal',source='station'){
@@ -11,6 +11,19 @@ function setup(s=newState(),flow=2,device='nasal',source='station'){
   return s;
 }
 describe('Visual v0.3 · monitor, scripted oxygen and persistence',()=>{
+  it('warns on early transfer selection without consuming time or recording a critical action',()=>{
+    const store=new SimulationStore();store.select('door');const s=store.getSnapshot().simulation;
+    const html=renderToStaticMarkup(<TransferPanel s={s} store={store}/>);
+    expect(s.minute).toBe(0);expect(s.events).toHaveLength(0);expect(s.criticalFlags).toHaveLength(0);
+    expect(html).toContain('role="alert"');expect(html).toContain('intenta estabilizar');expect(html).toContain('Coordina la emergencia');
+    const attempt=act(s,'prepare_transfer');expect(attempt.events.at(-1)?.text).toContain('intenta estabilizar');expect(attempt.transferPrepared).toBe(false);
+  });
+  it('updates transfer guidance from effective support and coordination while preserving the other safety checks',()=>{
+    let s=act(setup(),'oxygen');expect(transferGuidance(s)).toHaveLength(1);expect(transferGuidance(s)[0]).toContain('Coordina');
+    s=act(s,'coordinate');expect(transferGuidance(s)).toEqual([]);
+    s=act(s,'prepare_transfer');expect(s.transferPrepared).toBe(false);expect(s.events.at(-1)?.text).toContain('exploración física');
+    s=act(s,'stop_oxygen');expect(transferGuidance(s)[0]).toContain('soporte de oxígeno efectivo');
+  });
   it('hides every unmeasured vital in the engine projection and accessible monitor',()=>{
     const s=newState(),m=monitor(s),html=renderToStaticMarkup(<MonitorReadout s={s}/>);
     expect([m.spo2,m.heart,m.respiratory,m.bp,m.temperature]).toEqual(['—','—','—','—','—']);

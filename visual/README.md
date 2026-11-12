@@ -1,4 +1,6 @@
-# SIMUL-ANDE Visual · Guardia virtual 0.3
+# SIMUL-ANDE Visual · Guardia virtual 0.3.1
+
+[Ajustes actuales de usabilidad v0.3.1](../docs/visual/V031.md): sala y paciente más grandes, letra compacta, contexto por pestañas, oxígeno en tres pasos y advertencias previas al traslado. Se conservan el motor, los datos clínicos y el almacenamiento v3.
 
 Actualización incremental con interfaz técnica, monitor integrado en Phaser y accesible en HTML, configuración de fuente/dispositivo/flujo, respuestas explícitas en JSON y reserva en minutos docentes. Mantiene el motor de decisiones, los dos establecimientos, entrevista, examen, inventarios, TX01, bitácora y evaluación.
 

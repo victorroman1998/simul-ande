@@ -46,6 +46,12 @@ export function missingTransfer(s:SimState):string[] {
   if(s.handoverSignature!==handoverSignature(s)) missing.push('entrega clínica actualizada');
   return missing;
 }
+export function transferGuidance(s:SimState):string[] {
+  const messages:string[]=[];
+  if(!supportActive(s))messages.push('Antes de preparar el traslado, intenta estabilizar al paciente con los recursos disponibles. En este caso falta comprobar e iniciar un soporte de oxígeno efectivo.');
+  if(s.referralAt===null)messages.push('Coordina la emergencia con el hospital receptor del guion y confirma un transporte asistido con recursos suficientes. Puedes hacerlo en paralelo a la atención inicial.');
+  return messages;
+}
 export function reduce(state:SimState, action:Action):SimState {
   if(state.phase==='completed' || state.events.length>=1000 || state.events.some(e=>e.id===action.id)) return state;
   const s:SimState=structuredClone(state);
@@ -86,7 +92,7 @@ export function reduce(state:SimState, action:Action):SimState {
       break;
     case 'prepare_transfer': {
       const missing=missingTransfer(s), t=facility(s.facilityId).transport;
-      if(missing.length) block('Traslado interceptado por seguridad: falta '+missing.join(', ')+'.',true);
+      if(missing.length) block([...transferGuidance(s),'Traslado interceptado por seguridad: falta '+missing.join(', ')+'.'].join(' '),true);
       else if(!t.assisted || !t.trained_team || !t.oximetry || reserve(s,'transport')<t.travel_min+(s.oxygen.sourceId==='transport'?1:0) || (s.oxygen.sourceId==='station'&&reserve(s)<Math.max(1,s.ambulanceAt!-s.minute))) block('Soporte o reserva insuficientes para movilización y transporte: no preparar salida.',true);
       else {duration=1;s.transferPrepared=true;s.phase='completed';text='Transferencia preparada y caso educativo finalizado. No equivale a traslado realizado ni a mejoría clínica.';}
       break;
