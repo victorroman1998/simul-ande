@@ -34,7 +34,7 @@ export function measureOximetry(s:SimState,at:number){
   }
   const response=responseFor(s);
   if(!supportActive(s)||!response){o.reading={status:'unvalidated',spo2:null,at,responseId:null};return 'Respuesta no validada: no hay soporte efectivo o guion para esta combinación. No se fabrica SpO₂.';}
-  if(at-o.startedAt!<response.reevaluation_min){o.reading={status:'pending',spo2:null,at,responseId:null};return `Reevaluación pendiente: guion ${response.id}, a partir del minuto ${o.startedAt!+response.reevaluation_min}.`;} 
+  if(at-o.startedAt!<response.reevaluation_min){o.reading={status:'pending',spo2:null,at,responseId:null};return `Reevaluación pendiente: guion ${response.id}, a partir del minuto ${o.startedAt!+response.reevaluation_min}.`;}
   o.reading={status:'scripted',spo2:response.simulated_spo2_percent,at,responseId:response.id};
   return `SpO₂ ${response.simulated_spo2_percent} % SIMULADA · ${response.id} · VM-06 pendiente. ${response.interpretation}`;
 }
