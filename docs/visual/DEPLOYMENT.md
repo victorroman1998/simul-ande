@@ -1,5 +1,7 @@
 # Prototipo publicado y conservación de main
 
+**Actualización vigente:** [publicación v0.3 verificada y reversión](V03-DEPLOYMENT.md). Se conservan proyecto, audiencia pública y URL. El texto siguiente registra la publicación histórica de v0.2.
+
 **URL pública auténtica:** https://simul-ande-visual-vroman.sugary-bass-7867.chatgpt.site/
 
 Publicado el 11/11/2026. No requiere iniciar sesión; audiencia pública confirmada por el usuario. Estado nativo de despliegue: `succeeded`, versión 1. También se completó el caso en la URL y se comprobó acceso HTTP sin cookies.
